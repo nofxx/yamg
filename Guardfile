@@ -14,13 +14,13 @@ guard :minitest do
   # watch(%r{^test/test_helper\.rb$})      { 'test' }
 
   # with Minitest::Spec
-  watch(/^spec\/(.*)_spec\.rb$/)
-  watch(/^lib\/(.+)\.rb$/)         { 'spec' }
+  watch(%r{^spec/(.*)_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})         { 'spec' }
   # watch(%r{^lib/(.+)\.rb$})         { |m| "spec/#{m[1]}_spec.rb" }
-  watch(/^spec\/spec_helper\.rb$/) { 'spec' }
+  watch(%r{^spec/spec_helper\.rb$}) { 'spec' }
 end
 
 guard :rubocop do
   watch(/.+\.rb$/)
-  watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
+  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end

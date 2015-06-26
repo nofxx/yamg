@@ -2,7 +2,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'yamg'
-puts Rainbow("Starting YAMG!").red
+puts Rainbow('Starting YAMG!').red
 
 y = YAMG.new
 y.compile
