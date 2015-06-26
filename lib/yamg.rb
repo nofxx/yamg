@@ -10,7 +10,7 @@ MiniMagick.processor = :gm if ENV['gm']
 class YAMG
   attr_accessor :config
 
-  TEMPLATES = YAML.load_file("./yamg/template.yaml")
+  TEMPLATES = YAML.load_file('./lib/yamg/templates.yaml')
 
   def initialize
     load_config

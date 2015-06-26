@@ -44,7 +44,7 @@ android:
 ios:
   icons:
     'Resources/icons/icon.png': 57
-    'Resources/icons/icon@2x.png':114
+    'Resources/icons/icon@2x.png': 114
     'Resources/icons/icon-40.png': 40
     'Resources/icons/icon-40@2x.png': 80
     'Resources/icons/icon-40@3x.png': 120
@@ -57,7 +57,7 @@ ios:
     'Resources/icons/icon-72@2x.png': 144
     'Resources/icons/icon-76.png': 76
     'Resources/icons/icon-76@2x.png': 152
-    'Resources/icons/icon-120.png':120
+    'Resources/icons/icon-120.png': 120
     'Resources/icons/icon-small.png': 29
     'Resources/icons/icon-small@2x.png': 58
     'Resources/icons/icon-small@3x.png': 87
