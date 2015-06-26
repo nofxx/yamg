@@ -215,14 +215,14 @@ class YAMG
     }
   }
 
-  def initialize
-    load_config
+  def initialize(conf = './.yamg.yml')
+    load_config(conf)
   end
 
-  def load_config
-    self.config = YAML.load_file('./.yamg.yml').freeze
+  def load_config(conf)
+    self.config = YAML.load_file(conf).freeze
   rescue Errno::ENOENT
-    puts 'Create config!'
+    puts Rainbow('Create config!').red
     exit 1
   end
 
