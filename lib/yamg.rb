@@ -10,7 +10,9 @@ MiniMagick.processor = :gm if ENV['gm']
 class YAMG
   attr_accessor :config
 
-  TEMPLATES = YAML.load_file('./lib/yamg/templates.yaml')
+  TEMPLATES = YAML.load_file(
+    File.join(File.dirname(__FILE__), 'yamg', 'templates.yaml')
+  )
 
   def initialize(conf = './.yamg.yml')
     load_config(conf)
@@ -49,10 +51,10 @@ class YAMG
     puts Rainbow("Working on #{scope}'").blue
     setup = setup_for(opts)
 
-    if (t = TEMPLATES[scope.to_sym])
+    if (t = TEMPLATES[scope])
       Thread.new do # 200% speed up with 8 cores
-        icon_work(t[:icons], setup)
-        splash_work(t[:splash], setup) if t[:splash]
+        icon_work(t['icons'], setup)
+        splash_work(t['splash'], setup) if t['splash']
       end
     else
       puts 'Custom job!'
