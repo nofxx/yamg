@@ -4,4 +4,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'yamg'
 puts Rainbow("Starting YAMG!").red
 
-YAMG.new.compile
+y = YAMG.new
+y.compile
+y.screenshot

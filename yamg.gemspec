@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Marcos Piccinini']
   s.email       = ['nofxx@github.com']
   s.homepage    = 'http://github.com/nofxx/yamg'
-  s.summary     = 'Names as first class citizens'
-  s.description = 'Names as first class citizens'
+  s.summary     = 'Yet another media generator'
+  s.description = 'Provides all the media for your projects'
   s.license     = 'MIT'
 
   s.executables = ['yamg']
@@ -19,4 +19,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ['lib']
+
+  s.add_dependency 'mini_magick'
+  s.add_dependency 'rainbow'
 end

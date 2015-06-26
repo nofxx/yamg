@@ -216,8 +216,6 @@ class YAMG
 
   def initialize
     load_config
-
-
   end
 
   def load_icons(path)
@@ -226,7 +224,7 @@ class YAMG
   end
 
   def load_config
-    self.config = YAML.load_file('./.rmedia.yml').freeze
+    self.config = YAML.load_file('./.yamg.yml').freeze
   rescue Errno::ENOENT
     puts "Create config!"
     exit 1
@@ -251,16 +249,22 @@ class YAMG
   end
 
   def compile(scope = nil)
+    puts Rainbow("Working on #{scope}'").blue
+    time = Time.now
     config['compile'].each do |out, opts|
       setup = setup_for(opts)
-      puts Rainbow("Working on #{out = out.to_sym} '#{setup['path']}'").blue
-      if t = Templates[out]
-        icon_work(t[:icons], setup)
-        splash_work(t[:splash], setup) if t[:splash]
+
+      if t = Templates[out.to_sym]
+        Thread.new do # 200% speed up with 8 cores
+          icon_work(t[:icons], setup)
+          splash_work(t[:splash], setup) if t[:splash]
+        end
       else
         puts "Custom job!"
       end
     end
+    Thread.list.reject { |t| t == Thread.current }.each(&:join)
+    puts Rainbow("Done compile #{Time.now - time}").red
   end
 
   def write_out(img, path)
@@ -275,17 +279,17 @@ class YAMG
 
   def icon_work(files, setup)
     path = setup['icon'] || config['icon']['path']
+    rounded = setup['rounded'] || config['icon']['rounded']
     icons = load_icons(path)
     puts Rainbow("Starting in #{path} with #{icons} | #{setup}").blue
     files.each do |file, size|
       from = File.join(path, find_closest_gte_icon(size, icons))
       to = File.join(setup['path'], file)
-      print "#{File.basename from} -> #{to} (#{size}px)"
+      puts "#{File.basename from} -> #{to} (#{size}px)"
       image = MiniMagick::Image.open(from)
       image.resize size # "NxN"
+      image = round(image) if rounded
       write_out(image, to)
-      round path, size
-      puts
     end
   end
 
@@ -301,7 +305,7 @@ class YAMG
       icon_size = size.max / 4
       to = File.join(setup['path'], file)
       size = size.join('x')
-      print "#{center} -> #{file} (#{size}px)"
+      puts "#{center} -> #{file} (#{size}px)"
       image = MiniMagick::Image.open(File.join(path, center))
       image.resize icon_size if image.dimensions.max >= icon_size
       image.background background if background
@@ -320,17 +324,53 @@ class YAMG
         end
       end
       write_out(res, to)
-      puts
     end
   end
 
-  def round image, px
+  # https://gist.github.com/artemave/c20e7450af866f5e7735
+  def round img, r = 14
+    size = img.dimensions.join(',')
+    r = img.dimensions.max / r
+    radius = [r, r].join(',')
 
+    mask = MiniMagick::Image.open(img.path) #img.dimensions)
+    mask.format 'png'
+
+    mask.combine_options do |m|
+      m.alpha 'transparent'
+      m.background 'none'
+      m.draw "roundrectangle 0,0,#{size},#{radius}"
+    end
+
+    overlay = ::MiniMagick::Image.open img.path
+    overlay.format 'png'
+
+    overlay.combine_options do |o|
+      o.alpha 'transparent'
+      o.background 'none'
+      o.draw "roundrectangle 0,0,#{size},#{radius}"
+    end
+
+    masked = img.composite(mask, 'png') do |i|
+      i.alpha "set"
+      i.compose 'DstIn'
+    end
+
+    masked.composite(overlay, 'png') do |i|
+      i.compose 'Over'
+    end
+    masked
+   #        draw("'roundrectangle 0,0,#{img.width},#{img.height},#{r},#{r}")
+    # img.composite(mask)
+    # convert -size 512x512 xc:none -draw "roundrectangle 0,0,512,512,55,55" mask.png
+    # convert icon.png
+    # -matte mask.png
+    # -compose DstIn
+    # -composite picture_with_rounded_corners.png
   end
 
-  def work from, to, size
-    print
-
+  def screenshot
+    puts "SS"
   end
 end
 
