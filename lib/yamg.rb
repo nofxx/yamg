@@ -1,11 +1,7 @@
 require 'yaml'
 require 'rainbow'
+require 'screencap'
 require 'mini_magick'
-
-require 'yamg/cli'
-require 'yamg/icon'
-require 'yamg/splash'
-require 'yamg/screenshot'
 
 MiniMagick.processor = :gm if ENV['gm']
 
@@ -13,6 +9,11 @@ MiniMagick.processor = :gm if ENV['gm']
 # Yet Another Media Generator
 #
 module YAMG
+  autoload :CLI, 'yamg/cli'
+  autoload :Icon, 'yamg/icon'
+  autoload :Splash, 'yamg/splash'
+  autoload :Screenshot, 'yamg/screenshot'
+
   # Load template works
   TEMPLATES = YAML.load_file(
     File.join(File.dirname(__FILE__), 'yamg', 'templates.yaml')

@@ -1,16 +1,35 @@
+require 'screencap'
+# require 'smartshot'
+
 module YAMG
   #
-  # Srcreenshot from multiple providers
+  # Screenshot from multiple providers
   #
   class Screenshot
+    # include Capybara::DSL
+    attr_accessor :url, :size, :command
+
     # Uses PhantomJS
-    def initialize(url, size, opts)
-      @url = url
-      @size = size
-      @opts = opts
+    def initialize(ss)
+      require 'smartshot'
+      require 'capybara'
+      require 'capybara/poltergeist'
+      @name, opts =  *ss
+      uri = URI.parse(opts['url'])
+      @url = "http://#{uri}"
+      @size = opts['size'].split(/\s?,\s?/)
+      # @fetcher = Smartshot::Screenshot.new(window_size: @size)
+      @fetcher = Screencap::Fetcher.new(@url)
+
     end
 
-    def work
+    def work(path)
+      # visit(url)
+      # page.save_screenshot("#{path}/#{@name}.png")
+      # @fetcher.take_screenshot!(url: url, output: "#{path}/#{@name}.png")
+      @fetcher.fetch(output: "#{path}/#{@name}.png", width: @size[0], height: @size[1])
+      puts Rainbow("SS #{url} #{size}").black
     end
   end
+
 end

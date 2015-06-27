@@ -4,17 +4,17 @@ module YAMG
   #
   #
   class Icon
-    attr_accessor :src, :rounded, :setup
+    attr_accessor :src, :size, :rounded, :icons
 
-    def initialize(src, rounded = false, setup = nil)
+    def initialize(src, size, rounded = false)
       fail if src.nil? || src.empty?
       @src = src
+      @size  = size
       @rounded = rounded
-      @setup  = setup
-      puts Rainbow("Starting in #{src}").white
+      @icons = YAMG.load_images(src)
     end
 
-    def find_closest_gte_icon(size, icons)
+    def find_closest_gte_icon
       return icons.max_by(&:to_i) if icons.map(&:to_i).max < size
       icons.min_by do |f|
         # n = x.match(/\d+/).to_s.to_i
@@ -23,21 +23,11 @@ module YAMG
       end
     end
 
-    def convert(from, to, size, rounded)
-      puts Rainbow("#{File.basename from} -> #{to} (#{size}px)").black
-      image = MiniMagick::Image.open(from)
-      image.resize size # "NxN"
-      image = round(image) if rounded
-      YAMG.write_out(image, to)
-    end
-
-    def icon_work(files, out)
-      icons = YAMG.load_images(src)
-      files.each do |file, size|
-        from = File.join(src, find_closest_gte_icon(size, icons))
-        to = File.join(out, file)
-        convert(from, to, size, rounded)
-      end
+    def image
+      path = File.join(src, find_closest_gte_icon)
+      img = MiniMagick::Image.open(path)
+      img.resize size # "NxN"
+      rounded ? round(img) : img
     end
 
     #

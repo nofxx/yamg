@@ -4,27 +4,29 @@ module YAMG
   #
   #
   class Splash
-    attr_accessor :src, :bg, :image
+    attr_accessor :src, :bg, :size, :icons, :img
 
-    def initialize(args = {})
-      @src = args['path']
-      @bg = args['background']
-    end
+    def initialize(src, size, background)
+      @src = src
+      @size = size
+      @bg = background
+      @icons = YAMG.load_images(src)
+   end
 
     #
     # Center image
     #
-    def splash_center(size)
+    def splash_center(center)
       icon_size = size.max / 4
-      image.resize icon_size if image.dimensions.max >= icon_size
-      image.background bg if bg
-      image.combine_options do |o|
+      img.resize icon_size if img.dimensions.max >= icon_size
+      img.background bg if bg
+      img.combine_options do |o|
         o.gravity 'center'
         o.extent size.join('x') # "WxH"
       end
     end
 
-    def compose(img, other, name)
+    def compose(other, name)
       img.composite(other) do |o|
         o.compose 'Over'
         o.gravity File.basename(name, '.*')
@@ -35,27 +37,22 @@ module YAMG
     #
     # Composite 9 gravity
     #
-    def splash_composite(base, icons)
+    def splash_composite(base)
       max = base.dimensions.min / 9
       icons.reduce(base) do |img, over|
         other = MiniMagick::Image.open(File.join(src, over))
         other.resize(max) if other.dimensions.max >= max
-        compose(img, other, over)
+        compose(other, over)
       end
+      base
     end
 
-    def splash_work(screens, out)
-      icons = YAMG.load_images(src)
+    def image
       center = icons.find { |i| i =~ /center/ }
       icons.delete(center)
-      @image = MiniMagick::Image.open(File.join(src, center))
+      self.img = MiniMagick::Image.open(File.join(src, center))
 
-      puts Rainbow("Starting splashes | #{icons.size}").blue
-      screens.each do |file, size|
-        to = File.join(out, file)
-        image = splash_center(size)
-        YAMG.write_out(splash_composite(image, icons), to)
-      end
+      splash_composite(splash_center(center))
     end
   end
 end

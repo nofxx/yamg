@@ -25,12 +25,12 @@ YAMG - Yet Another Media Generator
 
 Linux
 
-    nice-pkg-manager install imagemagick ruby
+    nice-pkg-manager install imagemagick phantomjs ruby
     gem install yamg
 
 OSX
 
-    brew install imagemagick ruby
+    brew install imagemagick phantomjs ruby
     gem install yamg
 
 

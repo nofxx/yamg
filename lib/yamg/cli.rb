@@ -24,21 +24,36 @@ module YAMG
       end
     end
 
+    def compile_icon(i, size, setup)
+      folder = setup['icon'] || YAMG.config['icon']['path']
+      round = setup['rounded'] || YAMG.config['icon']['rounded']
+      icon = Icon.new(folder, size, setup).image
+      to = File.join(setup['path'], i)
+      YAMG.write_out(icon, to)
+      # puts Rainbow("Icon #{size}px #{i} #{setup['path']}").black
+      print Rainbow('I').black
+    end
+
+    def compile_splash(s, size, setup)
+      path = setup['splash'] || YAMG.config['splash']['path']
+      splash = Splash.new(path, size, YAMG.config['splash']['background']).image
+      to = File.join(setup['path'], s)
+      YAMG.write_out(splash, to)
+      # puts Rainbow("Splash #{size.join('x')}px #{s} -> #{setup['path']}").black
+      print Rainbow('S').black
+    end
+
     def compile_work(scope, opts)
-      puts Rainbow("Working on :#{scope}").yellow
       setup = setup_for(opts)
 
       if (task = YAMG::TEMPLATES[scope])
-        Thread.new do # 200% speed up with 8 cores
-          folder = setup['icon'] || YAMG.config['icon']['path']
-          round = setup['rounded'] || YAMG.config['icon']['rounded']
-          Icon.new(folder, round, setup).icon_work(task['icons'], setup['path'])
-          next unless task['splash']
-          Splash.new(YAMG.config['splash'])
-            .splash_work(task['splash'], setup['path'])
-        end
+      #Thread.new do # 200% speed up with 8 cores
+        task['icons'].each { |i, d| Thread.new { compile_icon(i, d, setup) }}
+        return unless task['splash']
+        task['splash'].each { |s, d| Thread.new { compile_splash(s, d, setup) }}
+      #end
       else
-        puts 'Custom job!'
+        # puts 'Custom job!'
       end
     end
 
@@ -46,7 +61,15 @@ module YAMG
       time = Time.now
       works.select! {  |w| w =~ scope } if scope
       works.each { |out, opts| compile_work(out, opts) }
+      works.select! {  |w| w =~ scope } if scope
+      puts Rainbow("Working on #{works.keys.join(', ')}").yellow
+
+      YAMG.config['screenshots'].each do |ss|
+        Thread.new { Screenshot.new(ss).work('./media') }
+      end
+      puts Rainbow(Thread.list.size.to_s + ' jobs').black
       Thread.list.reject { |t| t == Thread.current }.each(&:join)
+      puts Rainbow('-' * 59).black
       puts Rainbow("Done compile #{Time.now - time}").red
     end
 

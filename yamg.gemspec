@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'mini_magick'
+  s.add_dependency 'screencap'
   s.add_dependency 'rainbow'
 end
