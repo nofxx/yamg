@@ -11,8 +11,6 @@ module YAMG
       return YAMG.init if argv.join =~ /init/
       YAMG.load_config # (argv)
       @works = YAMG.config['compile']
-      compile
-      screenshot
     end
 
     def setup_for(opts)
@@ -58,15 +56,22 @@ module YAMG
     end
 
     def compile(scope = nil)
-      time = Time.now
       works.select! {  |w| w =~ scope } if scope
       works.each { |out, opts| compile_work(out, opts) }
       works.select! {  |w| w =~ scope } if scope
       puts Rainbow("Working on #{works.keys.join(', ')}").yellow
+    end
 
+    def screenshot
       YAMG.config['screenshots'].each do |ss|
         Thread.new { Screenshot.new(ss).work('./media') }
       end
+    end
+
+    def work!
+      time = Time.now
+      compile
+      screenshot
       puts Rainbow(Thread.list.size.to_s + ' jobs').black
       Thread.list.reject { |t| t == Thread.current }.each(&:join)
       puts Rainbow('-' * 59).black
