@@ -1,9 +1,4 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
 require 'yamg'
-puts Rainbow('Starting YAMG!').red
-
-y = YAMG.new
-y.compile
-y.screenshot
+YAMG::CLI.new(ARGV)

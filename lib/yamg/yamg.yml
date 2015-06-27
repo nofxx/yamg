@@ -1,0 +1,43 @@
+icon:
+  path: 'icons'
+  rounded: true
+  background: false # or color RGB
+
+media:
+  path: 'media.png'
+  background: false # or color RGB
+
+splash:
+  path: 'splash'
+  background: '#fff6d5' # or color RGB
+
+compile:
+
+  rails:
+    icon: './alpha'
+    path: '../amarja'
+
+  # phonegap: '../proj'
+  # cordova: '../proj'
+  ios: '../game/platforms/ios/NotaBe/'
+  android: '../game/platforms/android/'
+  # winos: '../proj'
+
+  # Assets for web stores/players
+  web: true
+  # Compiles to media/playstore
+  apple: true
+  # Compiles to media/playstore
+  google: true
+  # Compiles to media/playstore
+  twitter: true
+  # Compiles to media/playstore
+  facebook: true
+  # Compiles to media/custom
+  custom:
+    icons: [32, 64, 128]
+    medias: [400, 800]
+
+screenshots:
+  home:
+    url: 'notabe.com'

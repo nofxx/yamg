@@ -3,14 +3,14 @@ require 'spec_helper'
 describe YAMG do
   it 'should instantiate' do
     stub_const('YAML', y = class_double('YAML'))
-    expect(y).to receive(:load_file).and_return({ })
+    expect(y).to receive(:load_file).and_return({})
 
     expect { YAMG.new }.to_not raise_error
   end
 
   describe 'stubbed' do
     let :conf do
-      stub_const('YAML', y = class_double('YAML'))
+      stub_const('YAML', class_double('YAML'))
     end
 
     it 'should read conf icon' do
@@ -23,9 +23,6 @@ describe YAMG do
         expect(conf).to receive(:load_file).and_return({})
         expect(YAMG.new.setup_for(true)).to eq({"path"=>"./media"})
       end
-
     end
   end
-
-
 end
