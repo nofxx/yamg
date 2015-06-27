@@ -23,6 +23,14 @@ YAMG - Yet Another Media Generator
 
 ## Install
 
+Linux
+
+    nice-pkg-manager install imagemagick ruby
+    gem install yamg
+
+OSX
+
+    brew install imagemagick ruby
     gem install yamg
 
 
