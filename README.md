@@ -91,3 +91,16 @@ Soon.
 * Facebook
 * Twitter
 * Write your own (really easy, fork and change yml)
+
+## Notes
+
+#### Media
+
+Media is a logo, icon + name.
+
+
+#### Phonegap or Cordova
+
+You may generate assets for both, but the difference is:
+Phonegap (`www/res`) assets are used only on Phonegap Build.
+To build locally use Cordova assets (`platforms/<platform>/*`)
