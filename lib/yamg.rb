@@ -14,33 +14,29 @@ module YAMG
   autoload :Splash, 'yamg/splash'
   autoload :Screenshot, 'yamg/screenshot'
 
+  CONFIG_FILE = './.yamg.yml'
   # Load template works
   TEMPLATES = YAML.load_file(
     File.join(File.dirname(__FILE__), 'yamg', 'templates.yaml')
   )
 
-  # def initialize(conf = './.yamg.yml')
-  #   load_config(conf)
-  # end
   class << self
     attr_accessor :config
 
     def init
-      file = './.yamg.yml'
-      if File.exist?(file)
-        puts "File exists: '#{file}'"
+      if File.exist?(CONFIG_FILE)
+        puts "File exists: '#{CONFIG_FILE}'"
         exit 1
       end
-      puts Rainbow('Creating your configuration').black
       src = File.join(File.dirname(__FILE__), 'yamg', 'yamg.yml')
-      FileUtils.cp(src, file)
+      FileUtils.cp(src, CONFIG_FILE)
+      puts_and_exit("Created configuration file #{CONFIG_FILE}", :black)
     end
 
-    def load_config(conf = './.yamg.yml')
+    def load_config(conf = CONFIG_FILE)
       self.config = YAML.load_file(conf).freeze
     rescue Errno::ENOENT
-      puts Rainbow('Create config! Run: `yamg init`').red
-      exit 1
+      puts_and_exit('Create config! Run: `yamg init`')
     end
 
     def load_images(dir)
@@ -56,30 +52,12 @@ module YAMG
       FileUtils.mkdir_p File.dirname(path)
       img.write(path)
     rescue Errno::ENOENT
-      puts
-      puts Rainbow("Path not found '#{path}'").red
-      exit 1
+      puts_and_exit("Path not found '#{path}'")
+    end
+
+    def puts_and_exit(msg, color = :red)
+      puts Rainbow(msg).send(color)
+      exit color == :red ? 1 : 0
     end
   end
 end
-
-#     },
-#     "customImages": [
-#         {
-#             "width": 120,
-#             "height": 120,
-#             "path": "../Media/custom",
-#             "filename": "outputFilename.png",
-#             "source": {
-#                 "filename": "image.png",
-#                 "background": "fff6d5"
-#             }
-#         }
-#     ],
-#     "screenshots": [
-#         {
-#             "url": "http://notabe.com",
-#             "name": "homepage"
-#         }
-#     ]
-# }
