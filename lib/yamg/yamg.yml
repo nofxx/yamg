@@ -22,6 +22,7 @@ media:
 # What to do?
 #
 compile:
+  # Just remove if you don't need
 
   # Web projects
   #
@@ -41,21 +42,26 @@ compile:
   android: '/path/to/project/platforms/android/'
   # winos: '../proj'
 
-  # Assets for web stores/players
   #
-  # Compiles to media/playstore
+  # Assets for web stores/players
+  # Just remove if you don't need
+  #
+  # Compiles to media/apple
   apple: true
-  # Compiles to media/playstore
+  # Compiles to media/google
   google: true
-  # Compiles to media/playstore
+  # Compiles to media/twitter
   twitter: true
-  # Compiles to media/playstore
+  # Compiles to media/facebook
   facebook: true
-  # Compiles to media/custom
+
+  # Custom icons/splash
+  # Compiles to media/*
   custom:
     icons: [32, 64, 128]
     medias: [400, 800]
 
+# Custom screenshots
 screenshots:
   home:
-    url: 'notabe.com'
+    url: 'github.com'

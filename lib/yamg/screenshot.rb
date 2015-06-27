@@ -10,18 +10,16 @@ module YAMG
 
     # Uses PhantomJS
     def initialize(ss)
-      require 'smartshot'
-      require 'capybara'
-      require 'capybara/poltergeist'
       @name, opts =  *ss
       uri = URI.parse(opts['url'])
       @url = "http://#{uri}"
       @size = opts['size'].split(/\s?,\s?/)
       # @fetcher = Smartshot::Screenshot.new(window_size: @size)
       @fetcher = Screencap::Fetcher.new(@url)
-
     end
 
+    # Take the screenshot
+    # Do we need pixel depth??
     def work(path)
       # visit(url)
       # page.save_screenshot("#{path}/#{@name}.png")
@@ -30,5 +28,4 @@ module YAMG
       puts Rainbow("SS #{url} #{size}").black
     end
   end
-
 end
