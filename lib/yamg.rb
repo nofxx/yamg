@@ -13,7 +13,6 @@ MiniMagick.processor = :gm if ENV['gm']
 # Yet Another Media Generator
 #
 module YAMG
-
   # Load template works
   TEMPLATES = YAML.load_file(
     File.join(File.dirname(__FILE__), 'yamg', 'templates.yaml')
@@ -28,7 +27,7 @@ module YAMG
     def init
       file = './.yamg.yml'
       if File.exist?(file)
-        puts "File exists: '#{file}'";
+        puts "File exists: '#{file}'"
         exit 1
       end
       puts Rainbow('Creating your configuration').black
@@ -60,7 +59,6 @@ module YAMG
       puts Rainbow("Path not found '#{path}'").red
       exit 1
     end
-
   end
 end
 

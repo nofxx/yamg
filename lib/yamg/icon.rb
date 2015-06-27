@@ -8,7 +8,10 @@ module YAMG
 
     def initialize(src, rounded = false, setup = nil)
       fail if src.nil? || src.empty?
-      @src, @rounded, @setup  = src, rounded, setup
+      @src = src
+      @rounded = rounded
+      @setup  = setup
+      puts Rainbow("Starting in #{src}").white
     end
 
     def find_closest_gte_icon(size, icons)
@@ -20,20 +23,32 @@ module YAMG
       end
     end
 
+    def convert(from, to, size, rounded)
+      puts Rainbow("#{File.basename from} -> #{to} (#{size}px)").black
+      image = MiniMagick::Image.open(from)
+      image.resize size # "NxN"
+      image = round(image) if rounded
+      YAMG.write_out(image, to)
+    end
+
     def icon_work(files, out)
       icons = YAMG.load_images(src)
-      puts Rainbow("Starting in #{src} | #{icons.size} icon(s)}").white
       files.each do |file, size|
         from = File.join(src, find_closest_gte_icon(size, icons))
         to = File.join(out, file)
-        puts Rainbow("#{File.basename from} -> #{to} (#{size}px)").black
-        image = MiniMagick::Image.open(from)
-        image.resize size # "NxN"
-        image = round(image) if rounded
-        YAMG.write_out(image, to)
+        convert(from, to, size, rounded)
       end
     end
 
+    #
+    # Maybe this can be smaller, terminal equivalent:
+    # convert
+    # -size 512x512 xc:none
+    # -draw "roundrectangle 0,0,512,512,55,55" mask.png
+    # convert icon.png
+    # -matte mask.png
+    # -compose DstIn
+    # -composite picture_with_rounded_corners.png
     # https://gist.github.com/artemave/c20e7450af866f5e7735
     def round(img, r = 14)
       size = img.dimensions.join(',')
@@ -67,14 +82,6 @@ module YAMG
         i.compose 'Over'
       end
       masked
-
-      # convert
-      # -size 512x512 xc:none
-      # -draw "roundrectangle 0,0,512,512,55,55" mask.png
-      # convert icon.png
-      # -matte mask.png
-      # -compose DstIn
-      # -composite picture_with_rounded_corners.png
     end
   end
 end

@@ -14,14 +14,14 @@ describe YAMG do
     end
 
     it 'should read conf icon' do
-      expect(conf).to receive(:load_file).and_return({icon: {}})
-      expect(YAMG.new.config).to eq({icon: {}})
+      expect(conf).to receive(:load_file).and_return(icon: {})
+      expect(YAMG.new.config).to eq(icon: {})
     end
 
     describe 'simple setup' do
       it 'should map true to media' do
         expect(conf).to receive(:load_file).and_return({})
-        expect(YAMG.new.setup_for(true)).to eq({"path"=>"./media"})
+        expect(YAMG.new.setup_for(true)).to eq('path' => './media')
       end
     end
   end

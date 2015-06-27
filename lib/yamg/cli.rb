@@ -34,7 +34,8 @@ module YAMG
           round = setup['rounded'] || YAMG.config['icon']['rounded']
           Icon.new(folder, round, setup).icon_work(task['icons'], setup['path'])
           next unless task['splash']
-          Splash.new(YAMG.config['splash']).splash_work(task['splash'], setup['path'])
+          Splash.new(YAMG.config['splash'])
+            .splash_work(task['splash'], setup['path'])
         end
       else
         puts 'Custom job!'

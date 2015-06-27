@@ -24,19 +24,23 @@ module YAMG
       end
     end
 
+    def compose(img, other, name)
+      img.composite(other) do |o|
+        o.compose 'Over'
+        o.gravity File.basename(name, '.*')
+        o.geometry '+40%+40%'
+      end
+    end
+
     #
     # Composite 9 gravity
     #
     def splash_composite(base, icons)
       max = base.dimensions.min / 9
       icons.reduce(base) do |img, over|
-        oimg = MiniMagick::Image.open(File.join(src, over))
-        oimg.resize(max) if oimg.dimensions.max >= max
-        img.composite(oimg) do |o|
-          o.compose 'Over'
-          o.gravity File.basename(over, '.*')
-          o.geometry '+40%+40%'
-        end
+        other = MiniMagick::Image.open(File.join(src, over))
+        other.resize(max) if other.dimensions.max >= max
+        compose(img, other, over)
       end
     end
 
