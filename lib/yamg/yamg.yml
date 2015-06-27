@@ -1,30 +1,48 @@
+#
+# YAMG Configuration
+#
+
+# Main icon
 icon:
-  path: 'icons'
-  rounded: true
+  path: 'icons'     # path to icons folder
+  rounded: true     # defaults to false
   background: false # or color RGB
 
-media:
-  path: 'media.png'
-  background: false # or color RGB
-
+# Splash screen
 splash:
   path: 'splash'
   background: '#fff6d5' # or color RGB
 
+# Icon + name for instance
+media:
+  path: 'media.png'
+  background: false
+
+#
+# What to do?
+#
 compile:
 
+  # Web projects
+  #
+  web: true
+  # Ruby on rails
   rails:
-    icon: './alpha'
-    path: '../amarja'
+    path: '/path/to/rails/proj'
+    icon: './alpha' # Using another icon src folder
 
-  # phonegap: '../proj'
-  # cordova: '../proj'
-  ios: '../game/platforms/ios/NotaBe/'
-  android: '../game/platforms/android/'
+  # Mobile
+  #
+  # phonegap: '../path/to/project/www/res'
+  # cordova: 'soon shortcut'
+  # Cordova/iOS project
+  ios: '/path/to/project/platforms/ios/ProjectName/'
+  # Cordova/Android project
+  android: '/path/to/project/platforms/android/'
   # winos: '../proj'
 
   # Assets for web stores/players
-  web: true
+  #
   # Compiles to media/playstore
   apple: true
   # Compiles to media/playstore
