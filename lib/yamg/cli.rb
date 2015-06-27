@@ -72,8 +72,5 @@ module YAMG
       puts Rainbow('-' * 59).black
       puts Rainbow("Done compile #{Time.now - time}").red
     end
-
-    def screenshot
-    end
   end
 end

@@ -6,7 +6,6 @@ module YAMG
   # Screenshot from multiple providers
   #
   class Screenshot
-    # include Capybara::DSL
     attr_accessor :url, :size, :command
 
     # Uses PhantomJS
