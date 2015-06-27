@@ -39,6 +39,8 @@ OSX
 * Find best version (size) to use from icons folder.
 * Splash screen/banner generation with gravity.
 * Works with iOS/Android/Other mobile with Phonegap or Cordova.
+* Exports icons and splashes for stores and social networks.
+* Screenshots for stores and advertising.
 
 
 ## Use
