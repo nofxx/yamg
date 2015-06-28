@@ -23,14 +23,19 @@ module YAMG
       end
     end
 
+    def compile_media(i, size, setup)
+    end
+
     def compile_icon(i, size, setup)
       folder = setup['icon'] || YAMG.config['icon']['path']
-      round = setup['rounded'] || YAMG.config['icon']['rounded']
+      # Don' use || here, we are after false
+      round = setup['rounded']
+      round = YAMG.config['icon']['rounded'] if round.nil?
       to = File.join(setup['path'], i)
-      icon = Icon.new(folder, size, setup).image(to)
-      print Rainbow('I').black
+      icon = Icon.new(folder, size, round).image(to)
+      print Rainbow(round ? '(i)' : '[i]').black
       return unless YAMG.debug
-      puts Rainbow("Icon #{size}px -> #{setup['path']}#{i} ").black
+      puts Rainbow("Icon  #{size}px -> #{setup['path']}#{i} ").black
     end
 
     def compile_splash(s, size, setup)
@@ -47,12 +52,11 @@ module YAMG
       setup = setup_for(opts)
 
       if (task = YAMG::TEMPLATES[scope])
-      #Thread.new do # 200% speed up with 8 cores
-        task['icons'].each { |i, d|  compile_icon(i, d, setup) }
-        # task['icons'].each { |i, d| Thread.new { compile_icon(i, d, setup) }}
-        # return unless task['splash']
-        # task['splash'].each { |s, d| Thread.new { compile_splash(s, d, setup) }}
-      #end
+        %w(icon splash media).each do |key|
+          next unless (t = task[key])
+          #Thread.new do # 200% speed up with 8 cores
+          t.each { |i, d| send(:"compile_#{key}", i, d, setup) }
+        end
       else
         # puts 'Custom job!'
       end
