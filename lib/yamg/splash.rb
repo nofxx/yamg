@@ -26,14 +26,13 @@ module YAMG
     # Center image
     #
     def splash_start
-      icon_size = size.max  / 9
+      icon_size = size.max / 9
       img.resize icon_size if img.dimensions.max >= icon_size
       img.combine_options do |o|
         o.gravity 'center'
         o.background bg if bg
         o.extent size.join('x') # "WxH"
       end
-
     end
 
     def compose(other, name)

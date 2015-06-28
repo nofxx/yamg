@@ -27,7 +27,8 @@ module YAMG
     end
 
     def raster(out)
-      d, p = @dpi || [90, 90]
+      d = @dpi
+      p = [90, 90]
       FileUtils.mkdir_p File.dirname(out)
       args = "-d #{d} -p #{p} -w #{size} -h #{size} -f png"
       comm = "rsvg-convert #{args} #{@path} > #{out}"
@@ -100,6 +101,5 @@ module YAMG
     rescue Errno::ENOENT
       puts_and_exit("Path not found '#{out}'")
     end
-
   end
 end
