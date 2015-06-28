@@ -4,7 +4,7 @@ module YAMG
   #
   #
   class Icon
-    attr_accessor :src, :size, :rounded, :icons
+    attr_accessor :src, :size, :dpi, :rounded, :icons
 
     def initialize(src, size, rounded = false)
       fail if src.nil? || src.empty?
@@ -14,7 +14,7 @@ module YAMG
       @icons = YAMG.load_images(src)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
       @path = File.join(src, find_closest_gte_icon)
-      @dpi = [90, 90]
+      @dpi = 90
     end
     alias_method :rounded?, :rounded
 
@@ -27,18 +27,11 @@ module YAMG
       end
     end
 
-    def raster(out)
-      d, p = @dpi
-      FileUtils.mkdir_p File.dirname(out)
-      args = "-d #{d} -p #{p} -w #{size} -h #{size} -f png"
-      comm = "rsvg-convert #{args} #{@path} > #{out}"
-      puts comm if YAMG.debug
-      system(comm)
-    end
-
     def image(out)
       if File.extname(@path) =~ /svg/
-        raster(out)
+        pixels = dpi ? "-d #{dpi} -p #{dpi}" : nil
+        args = "#{pixels} -w #{size} -h #{size} -f png"
+        YAMG.run_rsvg(@path, out, args)
         img = MiniMagick::Image.open(out)
       else
         img = MiniMagick::Image.open(@path)
