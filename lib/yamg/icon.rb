@@ -12,7 +12,9 @@ module YAMG
       @size  = size
       @rounded = rounded
       @icons = YAMG.load_images(src)
+      @path = File.join(src, find_closest_gte_icon)
     end
+    alias_method :rounded?, :rounded
 
     def find_closest_gte_icon
       return icons.max_by(&:to_i) if icons.map(&:to_i).max < size
@@ -23,11 +25,25 @@ module YAMG
       end
     end
 
-    def image
-      path = File.join(src, find_closest_gte_icon)
-      img = MiniMagick::Image.open(path)
-      img.resize size # "NxN"
-      rounded ? round(img) : img
+    def raster(out)
+      d, p = @dpi || [90, 90]
+      FileUtils.mkdir_p File.dirname(out)
+      args = "-d #{d} -p #{p} -w #{size} -h #{size} -f png"
+      comm = "rsvg-convert #{args} #{@path} > #{out}"
+      puts comm if YAMG.debug
+      system(comm)
+    end
+
+    def image(out)
+      if File.extname(@path) =~ /svg/
+        raster(out)
+        img = MiniMagick::Image.open(out)
+      else
+        img = MiniMagick::Image.open(@path)
+        img.resize size # "NxN"
+        write_out(img, out)
+      end
+      write_out(round(img), out) if rounded?
     end
 
     #
@@ -73,5 +89,16 @@ module YAMG
       end
       masked
     end
+
+    #
+    # Writes image to disk
+    #
+    def write_out(img, out)
+      FileUtils.mkdir_p File.dirname(out)
+      img.write(out)
+    rescue Errno::ENOENT
+      puts_and_exit("Path not found '#{out}'")
+    end
+
   end
 end

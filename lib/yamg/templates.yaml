@@ -1,3 +1,9 @@
+raster:
+  icons:
+    'icon32.png': 32
+    'icon128.png': 128
+    'icon256.png': 256
+
 android:
   icons:
     'res/drawable/icon.png': 96
@@ -136,16 +142,16 @@ rails:
 
 twitter:
   icons:
-    'icon.png': 256
+    'twitter/icon.png': 256
 
 
 google:
   icons:
-    'icon.png': 512
-    'icon1024.png': 1024
-    '180.png': 180
+    'google/icon.png': 512
+    'google/icon1024.png': 1024
+    'google/180.png': 180
   splash:
-    'splash.png': [1024, 768]
+    'google/splash.png': [1024, 768]
   screenshots:
     'android/android-10in-1280x720-land': [1280, 720]
     'android/android-10in-2048x1152-land': [2048, 1152]
@@ -159,10 +165,10 @@ google:
 
 apple:
   icons:
-    'icon.png': 1024
-    'icon16.png': 16
+    'apple/icon.png': 1024
+    'apple/icon16.png': 16
   splash:
-    'splash.png': [1024, 768]
+    'apple/splash.png': [1024, 768]
   screenshots:
     'ios/ipad-1024x768-land': [1024, 768]
     'ios/ipad-1024x768-port': [768, 1024]
@@ -180,7 +186,7 @@ apple:
 
 facebook:
   icons:
-    'icon.png': 1024
-    'icon16.png': 16
+    'fb/icon.png': 1024
+    'fb/icon16.png': 16
   splash:
-    'splash.png': [1024, 768]
+    'fb/splash.png': [1024, 768]
