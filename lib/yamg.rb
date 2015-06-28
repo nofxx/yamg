@@ -21,7 +21,7 @@ module YAMG
   )
 
   class << self
-    attr_accessor :config
+    attr_accessor :config, :debug
 
     def init
       if File.exist?(CONFIG_FILE)
@@ -30,7 +30,7 @@ module YAMG
       end
       src = File.join(File.dirname(__FILE__), 'yamg', 'yamg.yml')
       FileUtils.cp(src, CONFIG_FILE)
-      puts_and_exit("Created configuration file #{CONFIG_FILE}", :black)
+      puts_and_exit("Created configuration file '#{CONFIG_FILE}'", :black)
     end
 
     def load_config(conf = CONFIG_FILE)
@@ -41,18 +41,7 @@ module YAMG
 
     def load_images(dir)
       return [dir] unless File.extname(dir).empty?
-      Dir["#{dir}/*.png"].map { |f| File.basename(f) }
-    end
-
-    #
-    # Writes image to disk
-    #
-    def write_out(img, path)
-      img.format File.extname(path)
-      FileUtils.mkdir_p File.dirname(path)
-      img.write(path)
-    rescue Errno::ENOENT
-      puts_and_exit("Path not found '#{path}'")
+      Dir["#{dir}/*.{svg,png,jpg}"].map { |f| File.basename(f) }
     end
 
     def puts_and_exit(msg, color = :red)

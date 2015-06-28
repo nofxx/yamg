@@ -7,7 +7,8 @@ module YAMG
       puts
       puts Rainbow('     Y              A               M               G').red
       puts
-
+      YAMG.debug = true if argv.join =~ /debug/
+      puts Rainbow('!!! DEBUG !!!').red if YAMG.debug
       return YAMG.init if argv.join =~ /init/
       YAMG.load_config # (argv)
       @works = YAMG.config['compile']
@@ -17,7 +18,7 @@ module YAMG
       case opts
       when Hash then opts
       when String then { 'path' => opts }
-      when TrueClass then { 'path' => './media' }
+      when TrueClass then { 'path' => './export/' }
       else fail
       end
     end
@@ -25,11 +26,11 @@ module YAMG
     def compile_icon(i, size, setup)
       folder = setup['icon'] || YAMG.config['icon']['path']
       round = setup['rounded'] || YAMG.config['icon']['rounded']
-      icon = Icon.new(folder, size, setup).image
       to = File.join(setup['path'], i)
-      YAMG.write_out(icon, to)
-      # puts Rainbow("Icon #{size}px #{i} #{setup['path']}").black
+      icon = Icon.new(folder, size, setup).image(to)
       print Rainbow('I').black
+      return unless YAMG.debug
+      puts Rainbow("Icon #{size}px -> #{setup['path']}#{i} ").black
     end
 
     def compile_splash(s, size, setup)
@@ -37,8 +38,9 @@ module YAMG
       splash = Splash.new(path, size, YAMG.config['splash']['background']).image
       to = File.join(setup['path'], s)
       YAMG.write_out(splash, to)
-      # puts Rainbow("Splash #{size.join('x')}px #{s} -> #{setup['path']}").black
       print Rainbow('S').black
+      return unless YAMG.debug
+      puts Rainbow("Splash #{size.join('x')}px #{s} -> #{setup['path']}").black
     end
 
     def compile_work(scope, opts)
@@ -46,9 +48,10 @@ module YAMG
 
       if (task = YAMG::TEMPLATES[scope])
       #Thread.new do # 200% speed up with 8 cores
-        task['icons'].each { |i, d| Thread.new { compile_icon(i, d, setup) }}
-        return unless task['splash']
-        task['splash'].each { |s, d| Thread.new { compile_splash(s, d, setup) }}
+        task['icons'].each { |i, d|  compile_icon(i, d, setup) }
+        # task['icons'].each { |i, d| Thread.new { compile_icon(i, d, setup) }}
+        # return unless task['splash']
+        # task['splash'].each { |s, d| Thread.new { compile_splash(s, d, setup) }}
       #end
       else
         # puts 'Custom job!'
@@ -64,7 +67,7 @@ module YAMG
 
     def screenshot
       YAMG.config['screenshots'].each do |ss|
-        Thread.new { Screenshot.new(ss).work('./media') }
+        Thread.new { Screenshot.new(ss).work('./ss') }
       end
     end
 
