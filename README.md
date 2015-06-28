@@ -21,22 +21,25 @@
 YAMG - Yet Another Media Generator
 
 
+
 ## Install
 
 Linux
 
-    nice-pkg-manager install imagemagick phantomjs ruby
+    nice-pkg-manager install imagemagick phantomjs librsvg ruby
     gem install yamg
 
 OSX
 
-    brew install imagemagick phantomjs ruby
+    brew install imagemagick phantomjs librsvg ruby
     gem install yamg
 
 
 ## Features
 
 * Find best version (size) to use from icons folder.
+* Shrinks binaries from the closest or greater size version.
+* Raster SVG to PNG with exact size and dpi.
 * Splash screen/banner generation with gravity.
 * Works with iOS/Android/Other mobile with Phonegap or Cordova.
 * Exports icons and splashes for stores and social networks.
@@ -49,7 +52,14 @@ OSX
 
 A `.yamg.yml` will be created on the folder.
 
+
 ### Icons
+
+Your main icon(s) may be SVG or PNG. Or both:
+SVG is always the best choice except really small (16x16, 32x32)
+icons: there you can show your pixel art skills to the world.
+
+#### PNG
 
 Multiple sizes:
 Just save your files with the size in pixels first, example:
@@ -58,6 +68,12 @@ YAMG will choose the best size for the case, and don't touch
 the icon if sizes are a match.
 
 It's ok to (or if you) have only one icon, make it >512px.
+
+#### SVG
+
+You may still use best size match: Just have you folder:
+'16-icon.svg', '256-icon.svg', problably not much more:
+The SVG will be rasterized in the correct size needed.
 
 
 ### Splash
