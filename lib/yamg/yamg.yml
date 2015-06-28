@@ -60,11 +60,12 @@ compile:
 
   # Custom icons/splash
   # Compiles to media/*
-  custom:
-    icons: [32, 64, 128]
-    medias: [400, 800]
+  # custom:
+  #   icons: [32, 64, 128]
+  #   medias: [400, 800]
 
 # Custom screenshots
-screenshots:
-  home:
-    url: 'github.com'
+# screenshots:
+#   home:
+#     url: 'github.com'
+#     size: [1280, 720]

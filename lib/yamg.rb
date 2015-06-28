@@ -44,6 +44,25 @@ module YAMG
       Dir["#{dir}/*.{svg,png,jpg}"].map { |f| File.basename(f) }
     end
 
+    def run(comm)
+      puts comm if debug
+      system(comm)
+    end
+
+    def run_rsvg(src, out, args = nil)
+      FileUtils.mkdir_p File.dirname(out)
+      run "rsvg-convert #{args} #{src} > #{out}"
+    end
+
+
+    def run_ffmpeg
+    end
+
+    def run_imagemagick(comm)
+      shell = MiniMagick::Shell.new #(whiny)
+      shell.run(comm).strip
+    end
+
     def puts_and_exit(msg, color = :red)
       puts
       puts Rainbow('---').black

@@ -11,9 +11,11 @@ module YAMG
     # Uses PhantomJS
     def initialize(ss)
       @name, opts =  *ss
+      fail 'No screen size provided' unless opts['size']
       uri = URI.parse(opts['url'])
       @url = "http://#{uri}"
-      @size = opts['size'].split(/\s?,\s?/)
+      @size = opts['size']
+      @size = @size.split(/\s?,\s?/) if @size.respond_to?(:split)
       # @fetcher = Smartshot::Screenshot.new(window_size: @size)
       @fetcher = Screencap::Fetcher.new(@url)
     end
