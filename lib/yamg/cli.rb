@@ -1,7 +1,7 @@
 module YAMG
   # Command line interface
   class CLI
-    attr_accessor :works
+    attr_accessor :works, :scope
 
     def initialize(argv)
       puts
@@ -12,6 +12,7 @@ module YAMG
       return YAMG.init if argv.join =~ /init/
       YAMG.load_config # (argv)
       @works = YAMG.config['compile']
+      @scope = argv.empty? ? nil : argv.join
     end
 
     def setup_for(opts)
@@ -48,24 +49,26 @@ module YAMG
       puts Rainbow("Splash #{size.join('x')}px #{setup['path']}#{s}").black
     end
 
-    def compile_work(scope, opts)
+    def compile_work(template, opts)
       setup = setup_for(opts)
 
-      if (task = YAMG::TEMPLATES[scope])
+      if (task = YAMG::TEMPLATES[template])
         %w(icon splash media).each do |key|
-          next unless (t = task[key])
-          #Thread.new do # 200% speed up with 8 cores
-          t.each { |i, d| send(:"compile_#{key}", i, d, setup) }
+          next unless (work = task[key])
+          work.each do |i, d|
+            #Thread.new do # 200% speed up with 8 cores
+              send(:"compile_#{key}", i, d, setup)
+            #end
+          end
         end
       else
         # puts 'Custom job!'
       end
     end
 
-    def compile(scope = nil)
-      works.select! {  |w| w =~ scope } if scope
+    def compile
+      works.select! { |k,_v| k =~ /#{scope}/ } if scope
       works.each { |out, opts| compile_work(out, opts) }
-      works.select! {  |w| w =~ scope } if scope
       puts Rainbow("Working on #{works.keys.join(', ')}").yellow
     end
 
