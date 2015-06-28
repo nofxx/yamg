@@ -12,8 +12,8 @@ module YAMG
       @size  = size
       @rounded = rounded
       @icons = YAMG.load_images(src)
-      @path = File.join(src, find_closest_gte_icon)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
+      @path = File.join(src, find_closest_gte_icon)
     end
     alias_method :rounded?, :rounded
 

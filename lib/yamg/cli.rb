@@ -40,9 +40,9 @@ module YAMG
 
     def compile_splash(s, size, setup)
       path = setup['splash'] || YAMG.config['splash']['path']
-      splash = Splash.new(path, size, YAMG.config['splash']['background']).image
+      background = YAMG.config['splash']['background']
       to = File.join(setup['path'], s)
-      YAMG.write_out(splash, to)
+      splash = Splash.new(path, size, background).image(to)
       print Rainbow('S').black
       return unless YAMG.debug
       puts Rainbow("Splash #{size.join('x')}px #{s} -> #{setup['path']}").black
