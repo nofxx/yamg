@@ -3,6 +3,10 @@ raster:
     'icon32.png': 32
     'icon128.png': 128
     'icon256.png': 256
+  splash:
+    'splash-preview.png': [1024, 768]
+  media:
+    'media-preview.png': [512]
 
 android:
   icon:

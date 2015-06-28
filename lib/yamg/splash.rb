@@ -4,54 +4,73 @@ module YAMG
   #
   #
   class Splash
-    attr_accessor :src, :bg, :size, :icons, :img
+    attr_accessor :src, :bg, :size, :assets, :img
 
     def initialize(src, size, background)
       @src = src
       @size = size
       @bg = background
-      @icons = YAMG.load_images(src)
-      YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
+      @assets = YAMG.load_images(src)
+      %w(bg background wallpaper).each do |i|
+        @wallpaper = assets.delete("#{i}.png")
+      end
+      if center = assets.delete('center.png')
+        @center =  File.join(src, center)
+      end
+      @center ||= File.join(File.dirname(__FILE__), 'assets', 'dot.png')
+      p assets
+      p src
+      YAMG.puts_and_exit("No sources in '#{src}'") if assets.empty?
+      @img = MiniMagick::Image.open(@center)
    end
 
     #
     # Center image
     #
     def splash_start
-      icon_size = size.max / 4
+      icon_size = size.max  / 9
       img.resize icon_size if img.dimensions.max >= icon_size
-      img.background bg if bg
       img.combine_options do |o|
-        # o.gravity File.basename(partial, '.*')
+        o.gravity 'center'
+        o.background bg if bg
         o.extent size.join('x') # "WxH"
       end
+
     end
 
     def compose(other, name)
       img.composite(other) do |o|
-        o.compose 'Over'
         o.gravity File.basename(name, '.*')
-        o.geometry '+40%+40%'
+        o.compose 'Over'
+        padding = name =~ /east|west/ ? '+40%' : '+0%'
+        padding += name =~ /north|south/ ? '+40%' : '+0%'
+        o.geometry padding
       end
     end
 
     #
     # Composite 9 gravity
     #
-    def splash_composite(base)
-      max = base.dimensions.min / 9
-      icons.reduce(base) do |img, over|
+    def splash_composite
+      max = size.min / 9
+      assets.each do |over|
+        p over
         other = MiniMagick::Image.open(File.join(src, over))
         other.resize(max) if other.dimensions.max >= max
-        compose(other, over)
+        self.img = compose(other, over)
       end
-      base
     end
 
-    def image
-      # center = icons.find { |i| i =~ /center/ }
-      self.img = MiniMagick::Image.open(File.join(src, icons.pop))
-      splash_composite(splash_start)
+    #
+    # Writes image to disk
+    #
+    def image(out)
+      splash_start
+      splash_composite
+      FileUtils.mkdir_p File.dirname(out)
+      img.write(out)
+    rescue Errno::ENOENT
+      YAMG.puts_and_exit("Path not found '#{out}'")
     end
   end
 end
