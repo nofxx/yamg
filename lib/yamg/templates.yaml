@@ -1,10 +1,17 @@
 raster:
   icon:
+    'icon16.png': 16
     'icon32.png': 32
+    'icon64.png': 64
     'icon128.png': 128
     'icon256.png': 256
   splash:
-    'splash-preview.png': [1024, 768]
+    'splash-port-sm.png': [480, 320]
+    'splash-port-md.png': [1024, 768]
+    'splash-port-lg.png': [2048, 1536]
+    'splash-land-sm.png': [320, 480]
+    'splash-land-md.png': [768, 1024]
+    'splash-land-lg.png': [1536, 2048]
   media:
     'media-preview.png': [512]
 
@@ -85,6 +92,24 @@ ios:
     'Resources/splash/Default-736h.png': [1242, 2208]
     'Resources/splash/Default-Landscape-736h.png' : [2208, 1242]
 
+windows:
+  icons:
+    'StoreLogo.scale-240.png': 120
+    'StoreLogo.scale-100.png': 50
+    'Square150x150Logo.scale-100.png': 150
+    'Square150x150Logo.scale-240.png': 360
+    'Square30x30Logo.scale-100.png': 30
+    'Square310x310Logo.scale-100.png': 310
+    'Square44x44Logo.scale-100.png': 44
+    'Square44x44Logo.scale-240.png': 106
+    'Square70x70Logo.scale-100.png': 70
+    'Square71x71Logo.scale-100.png': 71
+    'Square71x71Logo.scale-240.png': 170
+  splash:
+    'SplashScreen.scale-100.png': [620, 300]
+    'SplashScreenPhone.scale-240.png': [1152, 1920]
+    'Wide310x150Logo.scale-100.png': [310, 150]
+    'Wide310x150Logo.scale-240.png': [744, 360]
 
 phonegap:
   icon:
@@ -141,32 +166,15 @@ rails:
     'app/assets/images/icon.png': 512
     'app/assets/images/favicon.png': 16
   media:
+    'app/assets/images/logo.png': 512
     'public/logo.png': 512
 
 
-twitter:
-  icon:
-    'twitter/icon.png': 256
-
-
-google:
-  icon:
-    'google/icon.png': 512
-    'google/icon1024.png': 1024
-    'google/180.png': 180
-  splash:
-    'google/splash.png': [1024, 768]
-  screenshots:
-    'android/android-10in-1280x720-land': [1280, 720]
-    'android/android-10in-2048x1152-land': [2048, 1152]
-    'android/android-10in-1280x720-port': [720, 1280]
-    'android/android-10in-2048x1152-port': [1152, 2048]
-    'android/android-7in-1280x800-land': [1280, 800]
-    'android/android-7in-1280x800-port': [800, 1280]
-    'android/android-4in-1280x720-land': [1920, 1080]
-    'android/android-4in-1280x720-port': [1080, 1920]
-
-
+#
+#
+# STORES
+#
+#
 apple:
   icon:
     'apple/icon.png': 1024
@@ -187,6 +195,32 @@ apple:
     'ios/iphone6-1334x750-land': [1334, 750, 2]
     'ios/iphone6-750x1334-port': [750, 1334, 2]
 
+google:
+  icon:
+    'google/icon.png': 512
+    'google/icon1024.png': 1024
+    'google/180.png': 180
+  splash:
+    'google/splash.png': [1024, 768]
+  screenshots:
+    'android/android-10in-1280x720-land': [1280, 720]
+    'android/android-10in-2048x1152-land': [2048, 1152]
+    'android/android-10in-1280x720-port': [720, 1280]
+    'android/android-10in-2048x1152-port': [1152, 2048]
+    'android/android-7in-1280x800-land': [1280, 800]
+    'android/android-7in-1280x800-port': [800, 1280]
+    'android/android-4in-1280x720-land': [1920, 1080]
+    'android/android-4in-1280x720-port': [1080, 1920]
+
+
+#
+#
+# NETWORKS
+#
+#
+twitter:
+  icon:
+    'twitter/icon.png': 256
 
 facebook:
   icon:
