@@ -45,6 +45,8 @@ module YAMG
     end
 
     def puts_and_exit(msg, color = :red)
+      puts
+      puts Rainbow('---').black
       puts Rainbow(msg).send(color)
       exit color == :red ? 1 : 0
     end
