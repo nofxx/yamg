@@ -18,8 +18,6 @@ module YAMG
         @center =  File.join(src, center)
       end
       @center ||= File.join(File.dirname(__FILE__), 'assets', 'dot.png')
-      p assets
-      p src
       YAMG.puts_and_exit("No sources in '#{src}'") if assets.empty?
       @img = MiniMagick::Image.open(@center)
    end
@@ -54,7 +52,6 @@ module YAMG
     def splash_composite
       max = size.min / 9
       assets.each do |over|
-        p over
         other = MiniMagick::Image.open(File.join(src, over))
         other.resize(max) if other.dimensions.max >= max
         self.img = compose(other, over)

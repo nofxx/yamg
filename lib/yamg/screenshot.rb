@@ -18,6 +18,10 @@ module YAMG
       @fetcher = Screencap::Fetcher.new(@url)
     end
 
+    def android
+      # adb -e shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > screen.png
+    end
+
     # Take the screenshot
     # Do we need pixel depth??
     def work(path)

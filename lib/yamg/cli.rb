@@ -35,7 +35,7 @@ module YAMG
       icon = Icon.new(folder, size, round).image(to)
       print Rainbow(round ? '(i)' : '[i]').black
       return unless YAMG.debug
-      puts Rainbow("Icon  #{size}px -> #{setup['path']}#{i} ").black
+      puts Rainbow("Icon    #{size}px -> #{setup['path']}#{i} ").black
     end
 
     def compile_splash(s, size, setup)
@@ -43,9 +43,9 @@ module YAMG
       background = YAMG.config['splash']['background']
       to = File.join(setup['path'], s)
       splash = Splash.new(path, size, background).image(to)
-      print Rainbow('S').black
+      print Rainbow('{S}').black
       return unless YAMG.debug
-      puts Rainbow("Splash #{size.join('x')}px #{s} -> #{setup['path']}").black
+      puts Rainbow("Splash #{size.join('x')}px #{setup['path']}#{s}").black
     end
 
     def compile_work(scope, opts)
