@@ -63,6 +63,11 @@ module YAMG
       shell.run(comm).strip
     end
 
+    def info(msg, color = :red)
+      return unless debug
+      puts Rainbow(msg).send(color)
+    end
+
     def puts_and_exit(msg, color = :red)
       puts
       puts Rainbow('---').black

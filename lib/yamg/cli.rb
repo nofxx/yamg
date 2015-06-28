@@ -20,11 +20,17 @@ module YAMG
 
     def setup_for(opts)
       case opts
-      when Hash then opts
+      when Hash then { 'path' => './export/' }.merge(opts)
       when String then { 'path' => opts }
       when TrueClass then { 'path' => './export/' }
       else fail
       end
+    end
+
+    def home_for(asset, setup)
+      path = setup['path']
+      FileUtils.mkdir_p path unless File.exist?(path)
+      File.join(path, asset)
     end
 
     def compile_media(i, size, setup)
@@ -35,21 +41,17 @@ module YAMG
       # Don' use || here, we are after false
       round = setup['rounded']
       round = YAMG.config['icon']['rounded'] if round.nil?
-      to = File.join(setup['path'], i)
-      Icon.new(folder, size, round).image(to)
+      Icon.new(folder, size, round).image(home_for(i, setup))
       print Rainbow(round ? '(i)' : '[i]').black
-      return unless YAMG.debug
-      puts Rainbow("Icon    #{size}px -> #{setup['path']}#{i} ").black
+      YAMG.info("Icon    #{size}px -> #{setup['path']}#{i} ", :black)
     end
 
     def compile_splash(s, size, setup)
       path = setup['splash'] || YAMG.config['splash']['path']
       background = YAMG.config['splash']['background']
-      to = File.join(setup['path'], s)
-      Splash.new(path, size, background).image(to)
+      Splash.new(path, size, background).image(home_for(s, setup))
       print Rainbow('{S}').black
-      return unless YAMG.debug
-      puts Rainbow("Splash #{size.join('x')}px #{setup['path']}#{s}").black
+      YAMG.info("Splash #{size.join('x')}px #{setup['path']}#{s}", :black)
     end
 
     def compile_work(template, opts)
