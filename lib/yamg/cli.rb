@@ -68,21 +68,25 @@ module YAMG
 
     def compile
       works.select! { |k,_v| k =~ /#{scope}/ } if scope
+      puts Rainbow("Tasks: #{works.keys.join(', ')}").yellow
       works.each { |out, opts| compile_work(out, opts) }
-      puts Rainbow("Working on #{works.keys.join(', ')}").yellow
     end
 
     def screenshot
       YAMG.config['screenshots'].each do |ss|
-        Thread.new { Screenshot.new(ss).work('./ss') }
+        Thread.new do
+          Screenshot.new(ss).work('./export')
+          puts Rainbow("[o]SS #{ss[0]} #{ss[1]}").black
+        end
       end
     end
 
     def work!
       time = Time.now
       compile
-      screenshot
-      puts Rainbow(Thread.list.size.to_s + ' jobs').black
+      screenshot if scope.nil? || scope =~ /ss|shot|screen/
+      puts
+      puts Rainbow(Thread.list.size.to_s + ' jobs to go').black
       Thread.list.reject { |t| t == Thread.current }.each(&:join)
       puts Rainbow('-' * 59).black
       puts Rainbow("Done compile #{Time.now - time}").red

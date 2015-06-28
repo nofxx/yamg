@@ -31,7 +31,6 @@ module YAMG
       # page.save_screenshot("#{path}/#{@name}.png")
       # @fetcher.take_screenshot!(url: url, output: "#{path}/#{@name}.png")
       @fetcher.fetch(output: "#{path}/#{@name}.png", width: @size[0], height: @size[1])
-      puts Rainbow("SS #{url} #{size}").black
     end
   end
 end
