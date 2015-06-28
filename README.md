@@ -78,8 +78,11 @@ The SVG will be rasterized in the correct size needed.
 
 ### Splash
 
-The main splash image must be named 'center'.
-Gravity!
+Up to 9 images may be placed in a splash.
+Note: The center splash image must be named 'center'.
+
+#### Gravity
+
 Just save you files with the names: 'north', 'northeast', 'south'...
 Gravity will put em in the correct place, with a lil padding.
 
@@ -92,20 +95,29 @@ There's also media generator for app stores.
 
 ## Screenshots (phantomjs)
 
-Soon.
+Custom screenshots:
+
+
+    name:
+      url: 'github.com'
+      size: [1280, 720]  # W x H
+      scroll: 100        # Optional
+
+
 
 ### Support
 
-* Web
-* Rails
 * iOS Project
 * Android Project
+* Windows Project
 * Cordova (platforms/*)
 * Phonegap (www/res)
 * App Store
 * Play Store
 * Facebook
 * Twitter
+* Rails
+* Web
 * Write your own (really easy, fork and change yml)
 
 ## Notes
