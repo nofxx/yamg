@@ -7,8 +7,11 @@ module YAMG
       puts
       puts Rainbow('     Y              A               M               G').red
       puts
-      YAMG.debug = true if argv.join =~ /debug/
-      puts Rainbow('!!! DEBUG !!!').red if YAMG.debug
+      if argv.join =~ /debug/
+        YAMG.debug = true
+        puts Rainbow('!!! DEBUG !!!').red
+        argv.delete('debug')
+      end
       return YAMG.init if argv.join =~ /init/
       YAMG.load_config # (argv)
       @works = YAMG.config['compile']
