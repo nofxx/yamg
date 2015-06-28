@@ -11,17 +11,18 @@ module YAMG
       @size = size
       @bg = background
       @icons = YAMG.load_images(src)
+      YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
    end
 
     #
     # Center image
     #
-    def splash_center(center)
+    def splash_start
       icon_size = size.max / 4
       img.resize icon_size if img.dimensions.max >= icon_size
       img.background bg if bg
       img.combine_options do |o|
-        o.gravity 'center'
+        # o.gravity File.basename(partial, '.*')
         o.extent size.join('x') # "WxH"
       end
     end
@@ -48,11 +49,9 @@ module YAMG
     end
 
     def image
-      center = icons.find { |i| i =~ /center/ }
-      icons.delete(center)
-      self.img = MiniMagick::Image.open(File.join(src, center))
-
-      splash_composite(splash_center(center))
+      # center = icons.find { |i| i =~ /center/ }
+      self.img = MiniMagick::Image.open(File.join(src, icons.pop))
+      splash_composite(splash_start)
     end
   end
 end
