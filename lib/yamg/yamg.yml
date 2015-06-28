@@ -6,12 +6,12 @@
 icon:
   path: 'icons'     # path to icons folder
   rounded: true     # defaults to false
-  background: false # or color RGB
+  background: false # nil or color RGBA
 
 # Splash screen
 splash:
-  path: 'splash'
-  background: '#fff6d5' # or color RGB
+  path: 'splash'        # path to the splash assets folder
+  background: '#fff6d5' # nil or color RGBA
 
 # Icon + name for instance
 media:
@@ -23,6 +23,9 @@ media:
 #
 compile:
   # Just remove if you don't need
+
+  # Preview to ./export/
+  raster: true
 
   # Web projects
   #

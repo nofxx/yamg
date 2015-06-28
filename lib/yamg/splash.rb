@@ -14,13 +14,13 @@ module YAMG
       %w(bg background wallpaper).each do |i|
         @wallpaper = assets.delete("#{i}.png")
       end
-      if center = assets.delete('center.png')
+      if (center = assets.delete('center.png'))
         @center =  File.join(src, center)
       end
       @center ||= File.join(File.dirname(__FILE__), 'assets', 'dot.png')
       YAMG.puts_and_exit("No sources in '#{src}'") if assets.empty?
       @img = MiniMagick::Image.open(@center)
-   end
+    end
 
     #
     # Center image

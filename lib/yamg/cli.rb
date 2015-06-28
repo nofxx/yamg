@@ -32,7 +32,7 @@ module YAMG
       round = setup['rounded']
       round = YAMG.config['icon']['rounded'] if round.nil?
       to = File.join(setup['path'], i)
-      icon = Icon.new(folder, size, round).image(to)
+      Icon.new(folder, size, round).image(to)
       print Rainbow(round ? '(i)' : '[i]').black
       return unless YAMG.debug
       puts Rainbow("Icon    #{size}px -> #{setup['path']}#{i} ").black
@@ -42,7 +42,7 @@ module YAMG
       path = setup['splash'] || YAMG.config['splash']['path']
       background = YAMG.config['splash']['background']
       to = File.join(setup['path'], s)
-      splash = Splash.new(path, size, background).image(to)
+      Splash.new(path, size, background).image(to)
       print Rainbow('{S}').black
       return unless YAMG.debug
       puts Rainbow("Splash #{size.join('x')}px #{setup['path']}#{s}").black

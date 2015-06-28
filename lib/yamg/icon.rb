@@ -14,6 +14,7 @@ module YAMG
       @icons = YAMG.load_images(src)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
       @path = File.join(src, find_closest_gte_icon)
+      @dpi = [90, 90]
     end
     alias_method :rounded?, :rounded
 
@@ -27,8 +28,7 @@ module YAMG
     end
 
     def raster(out)
-      d = @dpi
-      p = [90, 90]
+      d, p = @dpi
       FileUtils.mkdir_p File.dirname(out)
       args = "-d #{d} -p #{p} -w #{size} -h #{size} -f png"
       comm = "rsvg-convert #{args} #{@path} > #{out}"
