@@ -78,6 +78,7 @@ module YAMG
     end
 
     def screenshot
+      return unless YAMG.config['screenshots'].respond_to?(:each)
       YAMG.config['screenshots'].each do |ss|
         Thread.new do
           Screenshot.new(ss).work('./export')

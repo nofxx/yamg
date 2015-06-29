@@ -31,9 +31,9 @@ compile:
   #
   web: true
   # Ruby on rails
-  rails:
-    path: '/path/to/rails/proj'
-    icon: './alpha' # Using another icon src folder
+  # rails:
+  #   path: '/path/to/rails/proj'
+  #   icon: './alpha' # Using another icon src folder
 
   # Mobile
   #

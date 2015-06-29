@@ -11,6 +11,7 @@ module YAMG
       @size = size
       @bg = background
       @assets = YAMG.load_images(src)
+      YAMG.puts_and_exit("No sources in '#{src}'") if assets.empty?
       %w(bg background wallpaper).each do |i|
         @wallpaper = assets.delete("#{i}.png")
       end
@@ -18,7 +19,6 @@ module YAMG
         @center =  File.join(src, center)
       end
       @center ||= File.join(File.dirname(__FILE__), 'assets', 'dot.png')
-      YAMG.puts_and_exit("No sources in '#{src}'") if assets.empty?
       @img = MiniMagick::Image.open(@center)
     end
 
