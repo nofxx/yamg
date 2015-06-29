@@ -1,6 +1,7 @@
 # YAMG
-
-
+    _———                                                                         ———_
+    _——                                                                           ——_
+    _—                                                                             —_
           _____      _____       _____        ______  _______         _____
           |\    \    /    /|  ___|\    \      |      \/       \    ___|\    \
           | \    \  /    / | /    /\    \    /          /\     \  /    /\    \
@@ -13,6 +14,9 @@
               |_____|/      |____|  |____| \|____|      |____|/   \|___|    | /
                                                                       \|____|/
 
+    _—                                                                             —_
+    _——                                                                           ——_
+    _———                                                                         ———_
 
 [![Gem Version](https://badge.fury.io/rb/yamg.png)](http://badge.fury.io/rb/yamg)
 [![Dependency Status](https://gemnasium.com/nofxx/yamg.svg)](https://gemnasium.com/nofxx/yamg)
@@ -108,6 +112,7 @@ Custom screenshots:
 ### Support
 
 * iOS Project
+* OSX Project
 * Android Project
 * Windows Project
 * Cordova (platforms/*)
