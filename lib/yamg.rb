@@ -42,6 +42,8 @@ module YAMG
     def load_images(dir)
       return [dir] unless File.extname(dir).empty?
       Dir["#{dir}/*.{svg,png,jpg}"].map { |f| File.basename(f) }
+    rescue TypeError
+      puts_and_exit("Bad config file path: #{dir}")
     end
 
     def run(comm)
