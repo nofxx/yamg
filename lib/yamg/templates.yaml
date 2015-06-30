@@ -108,19 +108,28 @@ osx:
 
 windows:
   icons:
-    'StoreLogo.scale-240.png': 120
     'StoreLogo.scale-100.png': 50
-    'Square150x150Logo.scale-100.png': 150
-    'Square150x150Logo.scale-240.png': 360
+    'StoreLogo.scale-140.png': 70
+    'StoreLogo.scale-180.png': 90
+    'StoreLogo.scale-240.png': 120
+    'Square30x30Logo.scale-80.png': 24
     'Square30x30Logo.scale-100.png': 30
-    'Square310x310Logo.scale-100.png': 310
+    'Square30x30Logo.scale-140.png': 42
+    'Square30x30Logo.scale-180.png': 54
     'Square44x44Logo.scale-100.png': 44
     'Square44x44Logo.scale-240.png': 106
     'Square70x70Logo.scale-100.png': 70
     'Square71x71Logo.scale-100.png': 71
     'Square71x71Logo.scale-240.png': 170
+    'Square150x150Logo.scale-100.png': 150
+    'Square150x150Logo.scale-140.png': 210
+    'Square150x150Logo.scale-180.png': 270
+    'Square150x150Logo.scale-240.png': 360
+    'Square310x310Logo.scale-100.png': 310
   splash:
     'SplashScreen.scale-100.png': [620, 300]
+    'SplashScreen.scale-140.png': [868, 420]
+    'SplashScreen.scale-180.png': [1116, 540]
     'SplashScreenPhone.scale-240.png': [1152, 1920]
     'Wide310x150Logo.scale-100.png': [310, 150]
     'Wide310x150Logo.scale-240.png': [744, 360]
