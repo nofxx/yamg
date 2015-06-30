@@ -14,7 +14,7 @@ module YAMG
     # Icon.new(src, size, rounded).image('.path.ext')
     # Export image
     #
-    def initialize(src, size, rounded = false)
+    def initialize(src, size, rounded = false, radius = 14)
       fail if src.nil? || src.empty?
       @src = src
       @size  = size
@@ -22,6 +22,7 @@ module YAMG
       @icons = YAMG.load_images(src)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
       @choosen = File.join(src, find_closest_gte_icon)
+      @radius = radius
       @dpi = 90
     end
     alias_method :rounded?, :rounded
@@ -35,6 +36,13 @@ module YAMG
       end
     end
 
+    def radius(r = 14)
+      Array.new(2, img.dimensions.max / @radius).join(',')
+    end
+
+    def dimensions
+      img.dimensions.join(',')
+    end
 
     #
     # Maybe this can be smaller, terminal equivalent:
@@ -47,17 +55,13 @@ module YAMG
     # -composite picture_with_rounded_corners.png
     # https://gist.github.com/artemave/c20e7450af866f5e7735
     def round(r = 14)
-      s = img.dimensions.join(',')
-      r = img.dimensions.max / r
-      radius = [r, r].join(',')
-
       mask = MiniMagick::Image.open(img.path)
       mask.format 'png'
 
       mask.combine_options do |m|
         m.alpha 'transparent'
         m.background 'none'
-        m.draw "roundrectangle 0,0,#{s},#{radius}"
+        m.draw "roundrectangle 0,0,#{dimensions},#{radius}"
       end
 
       overlay = ::MiniMagick::Image.open img.path
@@ -66,15 +70,18 @@ module YAMG
       overlay.combine_options do |o|
         o.alpha 'transparent'
         o.background 'none'
-        o.draw "roundrectangle 0,0,#{s},#{radius}"
+        o.draw "roundrectangle 0,0,#{dimensions},#{radius}"
       end
 
-      img.composite(mask, 'png') do |i|
+      masked = img.composite(mask, 'png') do |i|
         i.alpha 'set'
         i.compose 'DstIn'
-      end.composite(overlay, 'png') do |i|
+      end
+
+      masked.composite(overlay, 'png') do |i|
         i.compose 'Over'
       end
+      masked
     end
 
     def image(out = nil)
