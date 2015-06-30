@@ -58,6 +58,18 @@ compile:
   # Compiles to media/facebook
   facebook: true
 
+  #
+  # Creating your own
+  #
+  # my-proj:
+  #   path: '../app/www/img'
+  #   # icon: './another/source' # icon here is source
+  #   export:
+  #     icon: # Notice: icon inside export
+  #       'icon16.png': 16
+  #       'icon64.png': 64
+  #       'icon128.png': 128
+
   # Custom icons/splash
   # Compiles to media/*
   # custom:

@@ -54,20 +54,15 @@ module YAMG
       YAMG.info("Splash #{size.join('x')}px #{setup['path']}#{s}", :black)
     end
 
-    def compile_work(template, opts)
-      setup = setup_for(opts)
-
-      if (task = YAMG::TEMPLATES[template])
-        %w(icon splash media).each do |key|
-          next unless (work = task[key])
-          work.each do |i, d|
-            #Thread.new do # 200% speed up with 8 cores
-              send(:"compile_#{key}", i, d, setup)
-            #end
+    def compile_work(job, opts)
+      task = YAMG::TEMPLATES[job] || (works[job] && works[job]['export'])
+      %w(icon splash media).each do |key|
+        next unless (work = task[key])
+        work.each do |asset, size|
+          Thread.new do # 500% speed up with 8 cores
+            send(:"compile_#{key}", asset, size, setup_for(opts))
           end
         end
-      else
-        # puts 'Custom job!'
       end
     end
 
