@@ -5,6 +5,8 @@ raster:
     'icon64.png': 64
     'icon128.png': 128
     'icon256.png': 256
+    'icon512.png': 512
+    'icon1024.png': 1024
   splash:
     'splash-port-sm.png': [480, 320]
     'splash-port-md.png': [1024, 768]

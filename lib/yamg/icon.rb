@@ -14,7 +14,7 @@ module YAMG
     # Icon.new(src, size, rounded).image('.path.ext')
     # Export image
     #
-    def initialize(src, size, rounded = false, radius = 14)
+    def initialize(src, size, rounded = false, radius = 9)
       fail if src.nil? || src.empty?
       @src = src
       @size  = size
@@ -36,8 +36,8 @@ module YAMG
       end
     end
 
-    def radius(r = 14)
-      Array.new(2, img.dimensions.max / @radius).join(',')
+    def radius
+      Array.new(2, size / @radius).join(',')
     end
 
     def dimensions
