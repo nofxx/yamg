@@ -4,8 +4,16 @@ module YAMG
   #
   #
   class Icon
-    attr_accessor :src, :size, :dpi, :rounded, :icons
+    attr_accessor :src, :size, :dpi, :rounded, :radius, :icons, :img
 
+    #
+    # Icon
+    #
+    # Icon.new(src, size, rounded).image
+    # Image class
+    # Icon.new(src, size, rounded).image('.path.ext')
+    # Export image
+    #
     def initialize(src, size, rounded = false)
       fail if src.nil? || src.empty?
       @src = src
@@ -13,7 +21,7 @@ module YAMG
       @rounded = rounded
       @icons = YAMG.load_images(src)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
-      @path = File.join(src, find_closest_gte_icon)
+      @choosen = File.join(src, find_closest_gte_icon)
       @dpi = 90
     end
     alias_method :rounded?, :rounded
@@ -27,19 +35,6 @@ module YAMG
       end
     end
 
-    def image(out)
-      if File.extname(@path) =~ /svg/
-        pixels = dpi ? "-d #{dpi} -p #{dpi}" : nil
-        args = "#{pixels} -w #{size} -h #{size} -f png"
-        YAMG.run_rsvg(@path, out, args)
-        img = MiniMagick::Image.open(out)
-      else
-        img = MiniMagick::Image.open(@path)
-        img.resize size # "NxN"
-        write_out(img, out)
-      end
-      write_out(round(img), out) if rounded?
-    end
 
     #
     # Maybe this can be smaller, terminal equivalent:
@@ -51,7 +46,7 @@ module YAMG
     # -compose DstIn
     # -composite picture_with_rounded_corners.png
     # https://gist.github.com/artemave/c20e7450af866f5e7735
-    def round(img, r = 14)
+    def round(r = 14)
       size = img.dimensions.join(',')
       r = img.dimensions.max / r
       radius = [r, r].join(',')
@@ -85,14 +80,30 @@ module YAMG
       masked
     end
 
+    def image(out = nil)
+      temp = out || "/tmp/#{@choosen.object_id}.png"
+      if File.extname(@choosen) =~ /svg/
+        pixels = dpi ? "-d #{dpi} -p #{dpi}" : nil
+        args = "#{pixels} -w #{size} -h #{size} -f png"
+        YAMG.run_rsvg(@choosen, temp, args)
+        @img = MiniMagick::Image.open(temp)
+      else
+        @img = MiniMagick::Image.open(@choosen)
+        @img.resize size # "NxN"
+      end
+      @img = round if rounded?
+      write_out(out)
+    end
+
     #
     # Writes image to disk
     #
-    def write_out(img, out)
-      FileUtils.mkdir_p File.dirname(out)
-      img.write(out)
+    def write_out(path = nil)
+      return img unless dir
+      FileUtils.mkdir_p File.dirname(path)
+      img.write(path)
     rescue Errno::ENOENT
-      puts_and_exit("Path not found '#{out}'")
+      puts_and_exit("Path not found '#{path}'")
     end
   end
 end

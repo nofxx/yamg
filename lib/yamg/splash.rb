@@ -6,6 +6,15 @@ module YAMG
   class Splash
     attr_accessor :src, :bg, :size, :assets, :img
 
+    #
+    # Splash
+    #
+    # Splash.new(src, size, rounded).image
+    # Image class
+    #
+    # Icon.new(src, size, rounded).image('.path.ext')
+    # Export image
+    #
     def initialize(src, size, background)
       @src = src
       @size = size
@@ -58,11 +67,12 @@ module YAMG
     end
 
     #
-    # Writes image to disk
+    # Outputs instance or writes image to disk
     #
-    def image(out)
+    def image(out = nil)
       splash_start
       splash_composite
+      return img unless out
       FileUtils.mkdir_p File.dirname(out)
       img.write(out)
     rescue Errno::ENOENT
