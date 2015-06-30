@@ -135,6 +135,21 @@ Custom screenshots:
       scroll: 100        # Optional
 
 
+## Config file
+
+Explain yamg.yml:
+
+```
+icon:
+  path:
+  round:
+```
+
+Custom location:
+
+    some-project:
+      icon: [32, 64, 128]
+
 
 ## Support
 
