@@ -35,7 +35,7 @@ module YAMG
     # Center image
     #
     def splash_start
-      icon_size = size.max / 9
+      icon_size = size.min / 5
       img.resize icon_size if img.dimensions.max >= icon_size
       img.combine_options do |o|
         o.gravity 'center'
