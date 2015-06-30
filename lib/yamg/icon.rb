@@ -47,7 +47,7 @@ module YAMG
     # -composite picture_with_rounded_corners.png
     # https://gist.github.com/artemave/c20e7450af866f5e7735
     def round(r = 14)
-      size = img.dimensions.join(',')
+      s = img.dimensions.join(',')
       r = img.dimensions.max / r
       radius = [r, r].join(',')
 
@@ -57,7 +57,7 @@ module YAMG
       mask.combine_options do |m|
         m.alpha 'transparent'
         m.background 'none'
-        m.draw "roundrectangle 0,0,#{size},#{radius}"
+        m.draw "roundrectangle 0,0,#{s},#{radius}"
       end
 
       overlay = ::MiniMagick::Image.open img.path
@@ -66,18 +66,15 @@ module YAMG
       overlay.combine_options do |o|
         o.alpha 'transparent'
         o.background 'none'
-        o.draw "roundrectangle 0,0,#{size},#{radius}"
+        o.draw "roundrectangle 0,0,#{s},#{radius}"
       end
 
-      masked = img.composite(mask, 'png') do |i|
+      img.composite(mask, 'png') do |i|
         i.alpha 'set'
         i.compose 'DstIn'
-      end
-
-      masked.composite(overlay, 'png') do |i|
+      end.composite(overlay, 'png') do |i|
         i.compose 'Over'
       end
-      masked
     end
 
     def image(out = nil)
@@ -99,7 +96,7 @@ module YAMG
     # Writes image to disk
     #
     def write_out(path = nil)
-      return img unless dir
+      return img unless path
       FileUtils.mkdir_p File.dirname(path)
       img.write(path)
     rescue Errno::ENOENT
