@@ -51,18 +51,45 @@ OSX
 
 ## Use
 
-    yamg
+First time
+
+    yamg init
 
 A `.yamg.yml` will be created on the folder.
+From now on to recompile everything when needed:
+
+    yamg
+
+An example folder `/art` of a project:
 
 
-### Icons
+```
+art
+├── icons
+│   ├── icon16.png
+│   ├── icon32.png
+│   └── icon512.svg
+├── media
+│   └── logo.svg
+└─── splash
+    ├── center.png
+    ├── north.png
+    └── southeast.png
+
+```
+
+From the `.yamg.yml` you may configure differents source paths.
+Also configure every export location you need (check #Support)
+
+## Icons
 
 Your main icon(s) may be SVG or PNG. Or both:
-SVG is always the best choice except really small (16x16, 32x32)
-icons: there you can show your pixel art skills to the world.
+SVG is always the best choice, it will be rasterized and not resized.
+Except will be with really small (16x16, 32x32, 64x64@2x) icons:
+A canvas for you to bring joy to the world with your pixel art skills.
 
-#### PNG
+
+### PNG
 
 Multiple sizes:
 Just save your files with the size in pixels first, example:
@@ -70,27 +97,28 @@ In the 'icons/' folder: '16-icon.png', '32-icon.png', '512-icon.png'.
 YAMG will choose the best size for the case, and don't touch
 the icon if sizes are a match.
 
-It's ok to (or if you) have only one icon, make it >512px.
+It's ok to (or if you) have only one png icon, make it >512px.
 
-#### SVG
+### SVG
 
 You may still use best size match: Just have you folder:
-'16-icon.svg', '256-icon.svg', problably not much more:
+'16-icon.svg', '256-icon.svg', and problably not many other sizes:
 The SVG will be rasterized in the correct size needed.
 
 
-### Splash
+## Splash
 
 Up to 9 images may be placed in a splash.
+It's not patch 9, think gravity: images will be pulled towards.
 Note: The center splash image must be named 'center'.
 
-#### Gravity
+### Gravity
 
 Just save you files with the names: 'north', 'northeast', 'south'...
 Gravity will put em in the correct place, with a lil padding.
 
 
-### Media
+## Media
 
 Addional media.
 There's also media generator for app stores.
@@ -108,7 +136,7 @@ Custom screenshots:
 
 
 
-### Support
+## Support
 
 * iOS Project
 * OSX Project
@@ -126,12 +154,12 @@ Custom screenshots:
 
 ## Notes
 
-#### Media
+### Media
 
 Media is a logo, icon + name.
 
 
-#### Phonegap or Cordova
+### Phonegap or Cordova
 
 You may generate assets for both, but the difference is:
 Phonegap (`www/res`) assets are used only on Phonegap Build.
