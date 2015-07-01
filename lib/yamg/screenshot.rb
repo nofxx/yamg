@@ -1,6 +1,3 @@
-require 'screencap'
-# require 'smartshot'
-
 module YAMG
   #
   # Screenshot from multiple providers
@@ -16,7 +13,7 @@ module YAMG
       @url = "http://#{uri}"
       @size = opts['size']
       @size = @size.split(/\s?,\s?/) if @size.respond_to?(:split)
-      # @fetcher = Smartshot::Screenshot.new(window_size: @size)
+      @dpi = opts['dpi']
       @fetcher = Screencap::Fetcher.new(@url)
     end
 
@@ -27,10 +24,8 @@ module YAMG
     # Take the screenshot
     # Do we need pixel depth??
     def work(path)
-      # visit(url)
-      # page.save_screenshot("#{path}/#{@name}.png")
-      # @fetcher.take_screenshot!(url: url, output: "#{path}/#{@name}.png")
-      @fetcher.fetch(output: "#{path}/#{@name}.png", width: @size[0], height: @size[1])
+      out = "#{path}/#{@name}.png"
+      @fetcher.fetch(output: out, width: @size[0], height: @size[1], dpi: @dpi)
     end
   end
 end

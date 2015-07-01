@@ -1,6 +1,6 @@
 # YAMG
 
-      ┏                                                                            ┓
+      ┏                                                                              ┓
 
            _____      _____       _____        ______  _______         _____
           |\    \    /    /|  ___|\    \      |      \/       \    ___|\    \
@@ -14,7 +14,7 @@
                |____|/      |____|  |____| \|____|      |____|/   \|___|    | /
                                                                        |____|/
 
-      ┗                                                                            ┛
+      ┗                                                                              ┛
 
 
 [![Gem Version](https://badge.fury.io/rb/yamg.png)](http://badge.fury.io/rb/yamg)
@@ -23,6 +23,7 @@
 
 YAMG - Yet Another Media Generator
 
+http://github.com/nofxx/yamg
 
 
 ## Install
@@ -135,6 +136,9 @@ Custom screenshots:
       scroll: 100        # Optional
 
 
+Note: Waiting for a pull-request on screencap for hidpi.
+
+
 ## Config file
 
 Explain yamg.yml:
@@ -169,6 +173,10 @@ Custom location:
 
 ## Notes
 
+RSVG
+https://github.com/svg/svgo
+
+
 ### Media
 
 Media is a logo, icon + name.
@@ -179,3 +187,8 @@ Media is a logo, icon + name.
 You may generate assets for both, but the difference is:
 Phonegap (`www/res`) assets are used only on Phonegap Build.
 To build locally use Cordova assets (`platforms/<platform>/*`)
+
+
+## Issues
+
+http://github.com/nofxx/yamg/issues
