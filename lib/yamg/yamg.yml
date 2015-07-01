@@ -14,9 +14,13 @@ splash:
   background: '#fff6d5' # nil or color RGBA
 
 # Icon + name for instance
-media:
-  path: 'media.png'
-  background: false
+# media:
+#   path: 'media.png'
+#   background: false
+
+# Uncomment to use screenshot feature!
+# screenshot:
+#   url: 'localhost:3000'
 
 #
 # What to do?

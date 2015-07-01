@@ -33,6 +33,13 @@ module YAMG
       File.join(path, asset)
     end
 
+    def compile_screenshots(ss, size, setup)
+      return unless YAMG.config['screenshot'].respond_to?(:[])
+      fail 'No url provided' unless url = YAMG.config['screenshot']['url']
+      Screenshot.new(ss, { 'size' => size, 'url' => url } ).work(setup['path'])
+      puts Rainbow("[o]SS #{ss}").black
+    end
+
     def compile_media(i, size, setup)
     end
 
@@ -56,12 +63,13 @@ module YAMG
 
     def compile_work(job, opts)
       task = YAMG::TEMPLATES[job] || (works[job] && works[job]['export'])
-      %w(icon splash media).each do |key|
-        next unless (work = task[key])
+      %w(icon logo splash media screenshots).each do |subtask|
+        next unless (work = task[subtask])
+
         work.each do |asset, size|
-          Thread.new do # 500% speed up with 8 cores
-            send(:"compile_#{key}", asset, size, setup_for(opts))
-          end
+          #Thread.new do # 500% speed up with 8 cores
+            send(:"compile_#{subtask}", asset, size, setup_for(opts))
+          #end
         end
       end
     end
