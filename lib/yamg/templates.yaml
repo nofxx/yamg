@@ -200,41 +200,42 @@ rails:
 #
 apple:
   icon:
-    'apple/icon.png': 1024
+    'apple/icon1024.png': 1024
     'apple/icon16.png': 16
   splash:
-    'apple/splash.png': [1024, 768]
+    'apple/splash1024x768.png': [1024, 768]
   screenshots:
-    'ios/ipad-1024x768-land': [1024, 768]
-    'ios/ipad-1024x768-port': [768, 1024]
-    'ios/ipadretina-2048x1536-land': [2048, 1536, 2]
-    'ios/ipadretina-2048x1536-port': [1536, 2048, 2]
-    'ios/iphone4-960x640-land': [960, 640]
-    'ios/iphone4-640x960-port': [640, 960]
-    'ios/iphone5-1136x640-land': [1136, 640, 2]
-    'ios/iphone5-640x1136-port': [640, 1136, 2]
-    'ios/iphone6p-1080x1920-port': [1080, 1920, 2]
-    'ios/iphone6p-1920x1080-land': [1920, 1080, 2]
-    'ios/iphone6-1334x750-land': [1334, 750, 2]
-    'ios/iphone6-750x1334-port': [750, 1334, 2]
+    'apple/ipad-1024x768-land': [1024, 768]
+    'apple/ipad-1024x768-port': [768, 1024]
+    'apple/ipadretina-2048x1536-land': [2048, 1536, 2]
+    'apple/ipadretina-2048x1536-port': [1536, 2048, 2]
+    'apple/iphone4-960x640-land': [960, 640]
+    'apple/iphone4-640x960-port': [640, 960]
+    'apple/iphone5-1136x640-land': [1136, 640, 2]
+    'apple/iphone5-640x1136-port': [640, 1136, 2]
+    'apple/iphone6p-1080x1920-port': [1080, 1920, 2]
+    'apple/iphone6p-1920x1080-land': [1920, 1080, 2]
+    'apple/iphone6-1334x750-land': [1334, 750, 2]
+    'apple/iphone6-750x1334-port': [750, 1334, 2]
 
 
 google:
   icon:
-    'google/icon.png': 512
+    'google/icon512.png': 512
     'google/icon1024.png': 1024
     'google/180.png': 180
   splash:
-    'google/splash.png': [1024, 768]
+    'google/splash1024x500.png': [1024, 500]
+    'google/splash180x120.png': [180, 120]
   screenshots:
-    'android/android-10in-1280x720-land': [1280, 720]
-    'android/android-10in-2048x1152-land': [2048, 1152]
-    'android/android-10in-1280x720-port': [720, 1280]
-    'android/android-10in-2048x1152-port': [1152, 2048]
-    'android/android-7in-1280x800-land': [1280, 800]
-    'android/android-7in-1280x800-port': [800, 1280]
-    'android/android-4in-1280x720-land': [1920, 1080]
-    'android/android-4in-1280x720-port': [1080, 1920]
+    'google/android-10in-1280x720-land': [1280, 720]
+    'google/android-10in-1280x720-port': [720, 1280]
+    'google/android-10in-2048x1152-land': [2048, 1152, 2]
+    'google/android-10in-2048x1152-port': [1152, 2048, 2]
+    'google/android-7in-1280x800-land': [1280, 800]
+    'google/android-7in-1280x800-port': [800, 1280]
+    'google/android-4in-1280x720-land': [1920, 1080, 2]
+    'google/android-4in-1280x720-port': [1080, 1920, 2]
 
 
 #
@@ -244,11 +245,11 @@ google:
 #
 twitter:
   icon:
-    'twitter/icon.png': 256
+    'twitter/icon256.png': 256
 
 facebook:
   icon:
-    'fb/icon.png': 1024
+    'fb/icon1024.png': 1024
     'fb/icon16.png': 16
   splash:
-    'fb/splash.png': [1024, 768]
+    'fb/splash1024x768.png': [1024, 768]
