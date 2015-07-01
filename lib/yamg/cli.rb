@@ -67,9 +67,9 @@ module YAMG
         next unless (work = task[subtask])
 
         work.each do |asset, size|
-          #Thread.new do # 500% speed up with 8 cores
+          Thread.new do # 500% speed up with 8 cores
             send(:"compile_#{subtask}", asset, size, setup_for(opts))
-          #end
+          end
         end
       end
     end

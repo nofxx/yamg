@@ -1,6 +1,6 @@
 # YAMG
 
-      ┏                                                                              ┓
+      ┏                                                                               ┓
 
            _____      _____       _____        ______  _______         _____
           |\    \    /    /|  ___|\    \      |      \/       \    ___|\    \
@@ -14,7 +14,7 @@
                |____|/      |____|  |____| \|____|      |____|/   \|___|    | /
                                                                        |____|/
 
-      ┗                                                                              ┛
+      ┗                                                                               ┛
 
 
 [![Gem Version](https://badge.fury.io/rb/yamg.png)](http://badge.fury.io/rb/yamg)
@@ -127,13 +127,24 @@ There's also media generator for app stores.
 
 ## Screenshots (phantomjs)
 
-Custom screenshots:
+To generate default screenshots (stores and whatnot) provide the url:
+
+```
+screenshot:
+  url: 'localhost:7000'
+```
 
 
-    name:
-      url: 'github.com'
-      size: [1280, 720]  # W x H
-      scroll: 100        # Optional
+Custom screenshots (notice the plural):
+
+```
+screenshots:
+  another-one:
+    url: 'github.com'
+    size: [1280, 720]  # W x H
+    scroll: 100        # Optional
+    dpi: 2             # Optional, 2 for HiDPI
+```
 
 
 Note: Waiting for a pull-request on screencap for hidpi.

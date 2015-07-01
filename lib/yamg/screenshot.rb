@@ -6,14 +6,15 @@ module YAMG
     attr_accessor :url, :size, :command
 
     # Uses PhantomJS
-    def initialize(ss)
-      @name, opts =  *ss
-      fail 'No screen size provided' unless opts['size']
+    def initialize(*ss)
+      @name, opts =  ss
+      fail 'No screen size provided' unless opts && opts['size']
       uri = URI.parse(opts['url'])
       @url = "http://#{uri}"
       @size = opts['size']
       @size = @size.split(/\s?,\s?/) if @size.respond_to?(:split)
-      @dpi = opts['dpi']
+      @dpi = @size.pop if @size.length > 2
+      @dpi ||= opts['dpi']
       @fetcher = Screencap::Fetcher.new(@url)
     end
 
