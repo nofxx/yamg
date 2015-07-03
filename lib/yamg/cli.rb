@@ -97,8 +97,8 @@ module YAMG
       puts
       puts Rainbow(Thread.list.size.to_s + ' jobs to go').black
       Thread.list.reject { |t| t == Thread.current }.each(&:join)
-      puts Rainbow('-' * 59).black
-      puts Rainbow("Done compile #{Time.now - time}").red
+      puts Rainbow("\n" + '-' * 59).black
+      puts Rainbow("Done compile #{(Time.now - time).to_i}s").red
     end
   end
 end

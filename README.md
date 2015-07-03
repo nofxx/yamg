@@ -199,6 +199,11 @@ You may generate assets for both, but the difference is:
 Phonegap (`www/res`) assets are used only on Phonegap Build.
 To build locally use Cordova assets (`platforms/<platform>/*`)
 
+### Cordova Rake Tasks
+
+If you're working with cordova, add some Ruby to it:
+
+https://github.com/nofxx/cordova-rake
 
 ## Issues
 
