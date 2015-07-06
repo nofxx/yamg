@@ -25,17 +25,19 @@ android:
     'res/drawable-mdpi/icon.png': 48
     'res/drawable-hdpi/icon.png': 72
     'res/drawable-xhdpi/icon.png': 96
-    'res/drawable-xxhdpi/icon.png': 256
+    'res/drawable-xxhdpi/icon.png': 144
     'bin/res/drawable/icon.png': 96
     'bin/res/drawable-ldpi/icon.png': 36
     'bin/res/drawable-mdpi/icon.png': 48
     'bin/res/drawable-hdpi/icon.png': 72
     'bin/res/drawable-xhdpi/icon.png': 96
+    'bin/res/drawable-xxhdpi/icon.png': 144
     'ant-build/res/drawable/icon.png': 96
     'ant-build/res/drawable-ldpi/icon.png': 36
     'ant-build/res/drawable-mdpi/icon.png': 48
     'ant-build/res/drawable-hdpi/icon.png': 72
     'ant-build/res/drawable-xhdpi/icon.png': 96
+    'ant-build/res/drawable-xxhdpi/icon.png': 144
   splash:
     'res/drawable-port-ldpi/screen.png': [200, 320]
     'res/drawable-port-mdpi/screen.png': [320, 480]
