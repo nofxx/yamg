@@ -27,6 +27,8 @@ module YAMG
     def work(path)
       out = "#{path}/#{@name}.png"
       @fetcher.fetch(output: out, width: @size[0], height: @size[1], dpi: @dpi)
+    rescue Screencap::Error
+      puts "Fail to capture screenshot #{@url}"
     end
   end
 end
