@@ -41,12 +41,13 @@ OSX
 
 ## Features
 
-* Find best version (size) to use from icons folder.
-* Shrinks binaries from the closest or greater size version.
-* Raster SVG to PNG with exact size and dpi.
+* Find **best version** (size) to use from icons folder.
+* Shrinks binaries from the *closest or greater size version*.
+* Raster **SVG to PNG** with exact size and dpi.
 * Splash screen/banner generation with gravity.
-* Works with iOS/Android/Other mobile with Phonegap or Cordova.
-* Exports icons and splashes for stores and social networks.
+* Works with **iOS/Android/Other** mobile with *Phonegap* or *Cordova*.
+* Exports icons and splashes for *stores and social networks*.
+* Creates **multi-layered _.ico_** files.
 * Screenshots for stores and advertising.
 
 
