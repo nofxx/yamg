@@ -11,6 +11,9 @@ describe YAMG::Icon do
       YAMG::Icon.new(ICONS_PATH, 16).image(OUT_PATH + 'i16.png')
       expect(File.exist?(out)).to be_truthy
       expect(File.size(out)).to eq(524) # transparency channel
+      img = ::MiniMagick::Image.open out
+      expect(img.width).to eq(16)
+      expect(img.height).to eq(16)
     end
 
     it 'should outputs a png file the size I want 2' do
@@ -18,13 +21,19 @@ describe YAMG::Icon do
       YAMG::Icon.new(ICONS_PATH, 256).image(OUT_PATH + 'i256.png')
       expect(File.exist?(out)).to be_truthy
       expect(File.size(out)).to eq(4952) # transparency channel
+      img = ::MiniMagick::Image.open out
+      expect(img.width).to eq(256)
+      expect(img.height).to eq(256)
     end
 
     it 'should outputs a png file the size I want 2 with bg' do
       out = OUT_PATH + 'i256bg.png'
       YAMG::Icon.new(ICONS_PATH, 256, 'black').image(OUT_PATH + 'i256bg.png')
       expect(File.exist?(out)).to be_truthy
-      expect(File.size(out)).to eq(5372) # transparency channel
+      expect(File.size(out)).to eq(5141) # transparency channel
+      img = ::MiniMagick::Image.open out
+      expect(img.width).to eq(256)
+      expect(img.height).to eq(256)
     end
 
     it 'should outputs a png file the size I want 2 with round' do
@@ -32,6 +41,19 @@ describe YAMG::Icon do
       YAMG::Icon.new(ICONS_PATH, 256, nil, :round).image(out)
       expect(File.exist?(out)).to be_truthy
       expect(File.size(out)).to eq(5089) # transparency channel
+      img = ::MiniMagick::Image.open out
+      expect(img.width).to eq(256)
+      expect(img.height).to eq(256)
+    end
+
+    it 'should outputs a png file the size I want 2 with bg & round' do
+      out = OUT_PATH + 'i256bgr.png'
+      YAMG::Icon.new(ICONS_PATH, 256, '#FF0000', :round).image(out)
+      expect(File.exist?(out)).to be_truthy
+      expect(File.size(out)).to eq(5089) # transparency channel
+      img = ::MiniMagick::Image.open out
+      expect(img.width).to eq(256)
+      expect(img.height).to eq(256)
     end
   end
 
