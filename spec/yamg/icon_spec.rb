@@ -50,7 +50,7 @@ describe YAMG::Icon do
       out = OUT_PATH + 'i256bgr.png'
       YAMG::Icon.new(ICONS_PATH, 256, '#FF0000', :round).image(out)
       expect(File.exist?(out)).to be_truthy
-      expect(File.size(out)).to eq(5089) # transparency channel
+      expect(File.size(out)).to eq(5809) # transparency channel
       img = ::MiniMagick::Image.open out
       expect(img.width).to eq(256)
       expect(img.height).to eq(256)
