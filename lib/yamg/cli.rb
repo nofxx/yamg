@@ -61,6 +61,15 @@ module YAMG
       YAMG.info("Splash #{size.join('x')}px #{setup['path']}#{s}", :black)
     end
 
+    def compile_docs(task, opts)
+      out = opts['path']
+      %w( manifest.json browserconfig.xml ).each do |doc|
+        puts Rainbow("{DOCS} #{out}/#{doc} created. Please review.").red
+        src = File.expand_path("assets/#{doc}", File.dirname(__FILE__))
+        FileUtils.cp(src, out)
+      end
+    end
+
     def compile_work(job, opts)
       task = YAMG::TEMPLATES[job] || (works[job] && works[job]['export'])
       %w(icon logo splash media screenshots).each do |subtask|
@@ -72,6 +81,7 @@ module YAMG
           end
         end
       end
+      compile_docs(task['docs'], opts) if task['docs']
     end
 
     def compile
