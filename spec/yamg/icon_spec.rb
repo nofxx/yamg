@@ -69,7 +69,7 @@ describe YAMG::Icon do
       out = OUT_PATH + 'favicon.ico'
       YAMG::Icon.new(ICONS_PATH, 48).image(out)
       expect(File.exist?(out)).to be_truthy
-      expect(File.size(out)).to eq(524) # transparency channel
+      expect(File.size(out)).to eq(7406) # transparency channel
       img = ::MiniMagick::Image.open out
       expect(img.type).to eq('ICO')
     end
