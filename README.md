@@ -82,6 +82,7 @@ art
 From the `.yamg.yml` you may configure differents source paths.
 Also configure every export location you need (check #Support)
 
+
 ## Icons
 
 Your main icon(s) may be SVG or PNG. Or both:
@@ -149,22 +150,35 @@ screenshots:
 
 Note: Waiting for a pull-request on screencap for hidpi.
 
-
 ## Config file
 
-Explain yamg.yml:
-
-```
+```yaml
 icon:
-  path:
-  round:
+  path: 'folder/'
+  round: true # defaults to false
+
+splash:
+  path: 'folder/'
+  background: #rgb
+
+screenshot:
+  path: 'url://'
 ```
+
 
 Custom location:
 
     some-project:
       icon: [32, 64, 128]
 
+
+Note: For Apple Store make sure to add round false if your default is true:
+
+```
+compile:
+  apple:
+    rounded: false
+```
 
 ## Support
 
