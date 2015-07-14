@@ -14,6 +14,8 @@ module YAMG
     # Icon.new(src, size, rounded).image('.path.ext')
     # Export image
     #
+    # ICO: 16/32/48
+    #
     def initialize(src, size, rounded = false, radius = 9)
       fail if src.nil? || src.empty?
       @src = src
@@ -28,10 +30,10 @@ module YAMG
     alias_method :rounded?, :rounded
 
     def find_closest_gte_icon
-      return icons.max_by(&:to_i) if icons.map(&:to_i).max < size
+      proc = lambda { |x| x.tr('^0-9', '').to_i }
+      return icons.max_by(&proc) if icons.map(&proc).max < size
       icons.min_by do |f|
-        # n = x.match(/\d+/).to_s.to_i
-        n = f.to_i
+        n = proc.call(f)
         size > n ? Float::INFINITY : n
       end
     end
