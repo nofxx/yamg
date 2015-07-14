@@ -177,6 +177,7 @@ phonegap:
 
 web:
   icon:
+    'favicon.ico': 48
     'icon.png': 512
     'icon-xs.png': 64
     'icon-sm.png': 128

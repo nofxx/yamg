@@ -96,20 +96,42 @@ module YAMG
       clone.composite(img) { |i| i.compose 'Over' }
     end
 
+    # Just copy the svg, never resize
+    def svg!
+      fail unless @icons.find { |i| File.extname(i) == 'svg' }
+    end
+
+    # ICO!
+    def ico!(out)
+      temp = ->(s) { "/tmp/#{s}-#{Thread.current.object_id}.png" }
+      MiniMagick::Tool::Convert.new do |o|
+        o << Icon.new(@src, 16).image(temp.call(16))
+        o << Icon.new(@src, 32).image(temp.call(32))
+        o << Icon.new(@src, 48).image(temp.call(48))
+        o.colors 256
+        o << out
+      end
+    end
+
     def image(out = nil)
+      return svg! if out =~ /svg$/
+      return ico!(out) if out =~ /ico$/
       temp = out || "/tmp/#{@choosen.object_id}.png"
       if File.extname(@choosen) =~ /svg/
         pixels = dpi ? "-d #{dpi} -p #{dpi}" : nil
         args = "#{pixels} -w #{size} -h #{size} -f png"
         YAMG.run_rsvg(@choosen, temp, args)
         @img = MiniMagick::Image.open(temp)
+        @img.format File.extname(out) if out
+
       else
         @img = MiniMagick::Image.open(@choosen)
+        @img.format File.extname(out) if out
         @img.resize size # "NxN"
       end
       @img = apply_background if @bg
       @img = round if rounded?
-      write_out(out)
+      out ? write_out(out) : img
     end
 
     #
@@ -119,6 +141,7 @@ module YAMG
       return img unless path
       FileUtils.mkdir_p File.dirname(path)
       img.write(path)
+      path
     rescue Errno::ENOENT
       puts_and_exit("Path not found '#{path}'")
     end
