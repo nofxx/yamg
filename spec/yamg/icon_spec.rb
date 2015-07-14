@@ -2,9 +2,18 @@ require 'spec_helper'
 
 describe YAMG::Icon do
 
-  it 'should outputs a png file' do
+  ICONS_PATH = Dir.pwd + '/spec/icons/'
+  OUT_PATH = Dir.pwd + '/spec/out/'
 
+  before do
+    FileUtils.rm_rf OUT_PATH
+    FileUtils.mkdir OUT_PATH
   end
+
+  it 'should outputs a png file the size I want' do
+    YAMG::Icon.new(ICONS_PATH, 16).write_out(OUT_PATH + 'foo.png')
+  end
+
   it 'should have a nice find icon 16' do
     expect(YAMG).to receive(:load_images).with('foo')
                      .and_return(['16.png', '32.png', '64.png'])

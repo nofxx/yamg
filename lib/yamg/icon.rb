@@ -17,7 +17,7 @@ module YAMG
     # ICO: 16/32/48
     #
     def initialize(src, size, rounded = false, radius = 9)
-      fail if src.nil? || src.empty?
+      fail 'No source' if src.nil? || src.empty?
       @src = src
       @size  = size
       @rounded = rounded
