@@ -11,7 +11,21 @@ describe YAMG::Icon do
   end
 
   it 'should outputs a png file the size I want' do
-    YAMG::Icon.new(ICONS_PATH, 16).write_out(OUT_PATH + 'foo.png')
+    YAMG::Icon.new(ICONS_PATH, 16).image(OUT_PATH + 'foo.png')
+    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
+    expect(File.size(OUT_PATH + 'foo.png')).to eq(524)
+  end
+
+  it 'should outputs a png file the size I want 2' do
+    YAMG::Icon.new(ICONS_PATH, 256).image(OUT_PATH + 'foo.png')
+    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
+    expect(File.size(OUT_PATH + 'foo.png')).to eq(5230)
+  end
+
+  it 'should outputs a png file the size I want 2 with round' do
+    YAMG::Icon.new(ICONS_PATH, 256, :round).image(OUT_PATH + 'foo.png')
+    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
+    expect(File.size(OUT_PATH + 'foo.png')).to eq(6596) # transparency channel
   end
 
   it 'should have a nice find icon 16' do
