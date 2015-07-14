@@ -30,7 +30,7 @@ module YAMG
     alias_method :rounded?, :rounded
 
     def find_closest_gte_icon
-      proc = lambda { |x| x.tr('^0-9', '').to_i }
+      proc = ->(x) { x.tr('^0-9', '').to_i }
       return icons.max_by(&proc) if icons.map(&proc).max < size
       icons.min_by do |f|
         n = proc.call(f)

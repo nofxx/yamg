@@ -3,7 +3,7 @@ module YAMG
   class CLI
     attr_accessor :works, :scope
 
-    def initialize(argv)
+    def initialize(argv = {})
       puts
       puts Rainbow('     Y              A               M               G').red
       puts
@@ -35,8 +35,8 @@ module YAMG
 
     def compile_screenshots(ss, size, setup)
       return unless YAMG.config['screenshot'].respond_to?(:[])
-      fail 'No url provided' unless url = YAMG.config['screenshot']['url']
-      Screenshot.new(ss, { 'size' => size, 'url' => url } ).work(setup['path'])
+      fail 'No url provided' unless (url = YAMG.config['screenshot']['url'])
+      Screenshot.new(ss, 'size' => size, 'url' => url).work(setup['path'])
       puts Rainbow("[o]SS #{ss}").black
     end
 
@@ -61,7 +61,7 @@ module YAMG
       YAMG.info("Splash #{size.join('x')}px #{setup['path']}#{s}", :black)
     end
 
-    def compile_docs(task, opts)
+    def compile_docs(opts)
       out = opts['path']
       %w( manifest.json browserconfig.xml ).each do |doc|
         puts Rainbow("{DOCS} #{out}/#{doc} created. Please review.").red
@@ -81,11 +81,11 @@ module YAMG
           end
         end
       end
-      compile_docs(task['docs'], opts) if task['docs']
+      compile_docs(opts) if task['docs']
     end
 
     def compile
-      works.select! { |k,_v| k =~ /#{scope}/ } if scope
+      works.select! { |k, _v| k =~ /#{scope}/ } if scope
       puts Rainbow("Tasks: #{works.keys.join(', ')}").yellow
       works.each { |out, opts| compile_work(out, opts) }
     end

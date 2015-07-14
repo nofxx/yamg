@@ -56,12 +56,11 @@ module YAMG
       run "rsvg-convert #{args} #{src} > #{out}"
     end
 
-
     def run_ffmpeg
     end
 
     def run_imagemagick(comm)
-      shell = MiniMagick::Shell.new #(whiny)
+      shell = MiniMagick::Shell.new # (whiny)
       shell.run(comm).strip
     end
 

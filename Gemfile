@@ -9,7 +9,7 @@ group :test do
   gem 'rubocop'
   gem 'guard'
   gem 'guard-rubocop'
-  gem 'minitest'
-  gem 'guard-minitest'
+  gem 'rspec'
+  gem 'guard-rspec'
   gem 'coveralls', require: false
 end
