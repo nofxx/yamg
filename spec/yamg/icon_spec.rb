@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe YAMG::Icon do
+
+  it 'should outputs a png file' do
+
+  end
   it 'should have a nice find icon 16' do
     expect(YAMG).to receive(:load_images).with('foo')
                      .and_return(['16.png', '32.png', '64.png'])
