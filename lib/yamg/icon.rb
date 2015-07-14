@@ -16,7 +16,7 @@ module YAMG
     #
     # ICO: 16/32/48
     #
-    def initialize(src, size, rounded = false, radius = 9)
+    def initialize(src, size, bg = nil, rounded = false, radius = 9)
       fail 'No source' if src.nil? || src.empty?
       @src = src
       @size  = size
@@ -24,8 +24,9 @@ module YAMG
       @icons = YAMG.load_images(src)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
       @choosen = File.join(src, find_closest_gte_icon)
-      @radius = radius
+      @radius = radius || 9
       @dpi = 90
+      @bg = bg
     end
     alias_method :rounded?, :rounded
 
@@ -98,6 +99,12 @@ module YAMG
         @img.resize size # "NxN"
       end
       @img = round if rounded?
+      if @bg
+        img.combine_options do |o|
+          o.gravity 'center'
+          o.background @bg
+        end
+      end
       write_out(out)
     end
 

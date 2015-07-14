@@ -46,9 +46,11 @@ module YAMG
     def compile_icon(i, size, setup)
       folder = setup['icon'] || YAMG.config['icon']['path']
       # Don' use || here, we are after false
+      bg = setup['bg'] || setup['background']
       round = setup['rounded']
       round = YAMG.config['icon']['rounded'] if round.nil?
-      Icon.new(folder, size, round).image(home_for(i, setup))
+      radius = setup['radius']
+      Icon.new(folder, size, bg, round, radius).image(home_for(i, setup))
       print Rainbow(round ? '(i)' : '[i]').black
       YAMG.info("Icon    #{size}px -> #{setup['path']}#{i} ", :black)
     end

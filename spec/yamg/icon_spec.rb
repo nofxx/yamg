@@ -22,8 +22,14 @@ describe YAMG::Icon do
     expect(File.size(OUT_PATH + 'foo.png')).to eq(5230)
   end
 
+  it 'should outputs a png file the size I want 2 with bg' do
+    YAMG::Icon.new(ICONS_PATH, 256, '#323232').image(OUT_PATH + 'foo.png')
+    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
+    expect(File.size(OUT_PATH + 'foo.png')).to eq(5372) # transparency channel
+  end
+
   it 'should outputs a png file the size I want 2 with round' do
-    YAMG::Icon.new(ICONS_PATH, 256, :round).image(OUT_PATH + 'foo.png')
+    YAMG::Icon.new(ICONS_PATH, 256, nil, :round).image(OUT_PATH + 'foo.png')
     expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
     expect(File.size(OUT_PATH + 'foo.png')).to eq(6596) # transparency channel
   end
