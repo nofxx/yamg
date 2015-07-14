@@ -6,7 +6,7 @@
 icon:
   path: 'icons'     # path to icons folder
   rounded: true     # defaults to false
-  background: false # nil or color RGBA
+  background: false # nil or color #RGB or rgba()
 
 # Splash screen
 splash:

@@ -5,33 +5,43 @@ describe YAMG::Icon do
   ICONS_PATH = Dir.pwd + '/spec/icons/'
   OUT_PATH = Dir.pwd + '/spec/out/'
 
-  before do
-    FileUtils.rm_rf OUT_PATH
-    FileUtils.mkdir OUT_PATH
+  describe 'PNG flow' do
+    it 'should outputs a png file the size I want' do
+      out = OUT_PATH + 'i16.png'
+      YAMG::Icon.new(ICONS_PATH, 16).image(OUT_PATH + 'i16.png')
+      expect(File.exist?(out)).to be_truthy
+      expect(File.size(out)).to eq(524) # transparency channel
+    end
+
+    it 'should outputs a png file the size I want 2' do
+      out = OUT_PATH + 'i256.png'
+      YAMG::Icon.new(ICONS_PATH, 256).image(OUT_PATH + 'i256.png')
+      expect(File.exist?(out)).to be_truthy
+      expect(File.size(out)).to eq(4952) # transparency channel
+    end
+
+    it 'should outputs a png file the size I want 2 with bg' do
+      out = OUT_PATH + 'i256bg.png'
+      YAMG::Icon.new(ICONS_PATH, 256, 'black').image(OUT_PATH + 'i256bg.png')
+      expect(File.exist?(out)).to be_truthy
+      expect(File.size(out)).to eq(5372) # transparency channel
+    end
+
+    it 'should outputs a png file the size I want 2 with round' do
+      out = OUT_PATH + 'i256r.png'
+      YAMG::Icon.new(ICONS_PATH, 256, nil, :round).image(out)
+      expect(File.exist?(out)).to be_truthy
+      expect(File.size(out)).to eq(5089) # transparency channel
+    end
   end
 
-  it 'should outputs a png file the size I want' do
-    YAMG::Icon.new(ICONS_PATH, 16).image(OUT_PATH + 'foo.png')
-    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
-    expect(File.size(OUT_PATH + 'foo.png')).to eq(524)
-  end
-
-  it 'should outputs a png file the size I want 2' do
-    YAMG::Icon.new(ICONS_PATH, 256).image(OUT_PATH + 'foo.png')
-    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
-    expect(File.size(OUT_PATH + 'foo.png')).to eq(5230)
-  end
-
-  it 'should outputs a png file the size I want 2 with bg' do
-    YAMG::Icon.new(ICONS_PATH, 256, '#323232').image(OUT_PATH + 'foo.png')
-    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
-    expect(File.size(OUT_PATH + 'foo.png')).to eq(5372) # transparency channel
-  end
-
-  it 'should outputs a png file the size I want 2 with round' do
-    YAMG::Icon.new(ICONS_PATH, 256, nil, :round).image(OUT_PATH + 'foo.png')
-    expect(File.exist?(OUT_PATH + 'foo.png')).to be_truthy
-    expect(File.size(OUT_PATH + 'foo.png')).to eq(6596) # transparency channel
+  describe 'ICO flow' do
+    it 'should output a multiple size ico file' do
+      out = OUT_PATH + 'i16.png'
+      YAMG::Icon.new(ICONS_PATH, 16).image(OUT_PATH + 'i16.png')
+      expect(File.exist?(out)).to be_truthy
+      expect(File.size(out)).to eq(524) # transparency channel
+    end
   end
 
   it 'should have a nice find icon 16' do

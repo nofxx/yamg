@@ -87,6 +87,15 @@ module YAMG
       masked
     end
 
+    def apply_background
+      clone = ::MiniMagick::Image.open img.path
+      clone.combine_options do |o|
+        o.draw 'color 0,0 reset'
+        o.fill @bg
+      end
+      clone.composite(img) { |i| i.compose 'Over' }
+    end
+
     def image(out = nil)
       temp = out || "/tmp/#{@choosen.object_id}.png"
       if File.extname(@choosen) =~ /svg/
@@ -98,13 +107,8 @@ module YAMG
         @img = MiniMagick::Image.open(@choosen)
         @img.resize size # "NxN"
       end
+      @img = apply_background if @bg
       @img = round if rounded?
-      if @bg
-        img.combine_options do |o|
-          o.gravity 'center'
-          o.background @bg
-        end
-      end
       write_out(out)
     end
 
