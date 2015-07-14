@@ -66,6 +66,7 @@ module YAMG
     def compile_docs(opts)
       out = opts['path']
       %w( manifest.json browserconfig.xml ).each do |doc|
+        next if File.exist?(out)
         puts Rainbow("{DOCS} #{out}/#{doc} created. Please review.").red
         src = File.expand_path("assets/#{doc}", File.dirname(__FILE__))
         FileUtils.cp(src, out)
