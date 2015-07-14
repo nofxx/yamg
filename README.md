@@ -107,6 +107,12 @@ You may still use best size match: Just have you folder:
 '16-icon.svg', '256-icon.svg', and problably not many other sizes:
 The SVG will be rasterized in the correct size needed.
 
+### ICO
+
+YAMG will automatically find the best version and combine:
+16px, 32px and 48px into a .ico for the web.
+Also check out #HTML to meta tags for all this.
+
 
 ## Splash
 
@@ -195,10 +201,60 @@ compile:
 * Web (Any framework: rails, sinatra, js...)
 * Write your own (really easy, fork and change yml)
 
-## Notes
 
-RSVG
+## HTML
+
+Meta tags in HTML:
+
+```html
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+```
+
+Meta tags in HAML:
+
+```haml
+%link{:href => "/apple-touch-icon-57x57.png", :rel => "apple-touch-icon", :sizes => "57x57"}/
+%link{:href => "/apple-touch-icon-60x60.png", :rel => "apple-touch-icon", :sizes => "60x60"}/
+%link{:href => "/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
+%link{:href => "/apple-touch-icon-76x76.png", :rel => "apple-touch-icon", :sizes => "76x76"}/
+%link{:href => "/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
+%link{:href => "/apple-touch-icon-120x120.png", :rel => "apple-touch-icon", :sizes => "120x120"}/
+%link{:href => "/apple-touch-icon-144x144.png", :rel => "apple-touch-icon", :sizes => "144x144"}/
+%link{:href => "/apple-touch-icon-152x152.png", :rel => "apple-touch-icon", :sizes => "152x152"}/
+%link{:href => "/apple-touch-icon-180x180.png", :rel => "apple-touch-icon", :sizes => "180x180"}/
+%link{:href => "/favicon-32x32.png", :rel => "icon", :sizes => "32x32", :type => "image/png"}/
+%link{:href => "/android-chrome-192x192.png", :rel => "icon", :sizes => "192x192", :type => "image/png"}/
+%link{:href => "/favicon-96x96.png", :rel => "icon", :sizes => "96x96", :type => "image/png"}/
+%link{:href => "/favicon-16x16.png", :rel => "icon", :sizes => "16x16", :type => "image/png"}/
+%link{:href => "/manifest.json", :rel => "manifest"}/
+%meta{:content => "#da532c", :name => "msapplication-TileColor"}/
+%meta{:content => "/mstile-144x144.png", :name => "msapplication-TileImage"}/
+%meta{:content => "#ffffff", :name => "theme-color"}/
+```
+
+## Notes & Thanks
+
+RSVG - Impossible without
 https://github.com/svg/svgo
+
+Real Favicon Generator - Perfect, but I wanted make it automated.
+http://realfavicongenerator.net
 
 
 ### Media
