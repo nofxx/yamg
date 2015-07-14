@@ -192,8 +192,7 @@ compile:
 * Play Store
 * Facebook
 * Twitter
-* Rails
-* Web
+* Web (Any framework: rails, sinatra, js...)
 * Write your own (really easy, fork and change yml)
 
 ## Notes

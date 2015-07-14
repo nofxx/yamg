@@ -33,11 +33,9 @@ compile:
 
   # Web projects
   #
-  web: true
-  # Ruby on rails
-  # rails:
-  #   path: '/path/to/rails/proj'
-  #   icon: './alpha' # Using another icon src folder
+  # Any framework, included: Favicons,iOS/Android/MStiles platforms
+  web:
+    path: '../my/web/app'
 
   # Mobile
   #
