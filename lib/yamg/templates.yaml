@@ -271,4 +271,7 @@ facebook:
     'fb/icon1024.png': 1024
     'fb/icon16.png': 16
   splash:
-    'fb/splash1024x768.png': [1024, 768]
+    'fb/splash155x100.png': [155, 100]
+    'fb/splash800x150.png': [800, 150]
+    'fb/splash1200x627.png': [1200, 627]
+    'fb/splash1848x682.png': [1848, 682]
