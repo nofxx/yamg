@@ -5,7 +5,6 @@ gemspec
 
 group :test do
   gem 'rake'
-  gem 'psych'
   gem 'rubocop'
   gem 'guard'
   gem 'guard-rubocop'
