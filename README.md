@@ -17,9 +17,9 @@
       ┗                                                                               ┛
 
 
-[![Gem Version](https://badge.fury.io/rb/yamg.png)](http://badge.fury.io/rb/yamg)
+[![Gem Version](https://badge.fury.io/rb/yamg.svg)](http://badge.fury.io/rb/yamg)
 [![Dependency Status](https://gemnasium.com/nofxx/yamg.svg)](https://gemnasium.com/nofxx/yamg)
-[![Build Status](https://travis-ci.org/nofxx/yamg.png?branch=master)](https://travis-ci.org/nofxx/yamg)
+[![Build Status](https://travis-ci.org/nofxx/yamg.svg?branch=master)](https://travis-ci.org/nofxx/yamg)
 
 YAMG - Yet Another Media Generator
 
