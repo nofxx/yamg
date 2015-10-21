@@ -38,6 +38,10 @@ OSX
     brew install imagemagick phantomjs librsvg ruby
     gem install yamg
 
+Trouble with phantomjs gem? Use NPM to install PhantomJS:
+
+    npm -g install phantomjs
+
 
 ## Features
 
@@ -257,6 +261,9 @@ https://github.com/svg/svgo
 Real Favicon Generator - Perfect, but I wanted make it automated.
 http://realfavicongenerator.net
 https://github.com/audreyr/favicon-cheat-sheet
+https://epicfavicongenerator.com/
+
+http://wkhtmltopdf.org/
 
 ### Media
 
