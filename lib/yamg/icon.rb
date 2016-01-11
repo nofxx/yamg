@@ -25,7 +25,7 @@ module YAMG
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
       @choosen = File.join(src, find_closest_gte_icon)
       @radius = radius || 9
-      @dpi = 90
+      # @dpi = 90
       @bg = bg
     end
     alias_method :rounded?, :rounded
