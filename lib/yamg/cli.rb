@@ -23,7 +23,7 @@ module YAMG
       when Hash then { 'path' => './export/' }.merge(opts)
       when String then { 'path' => opts }
       when TrueClass then { 'path' => './export/' }
-      else fail
+      else raise
       end
     end
 
@@ -35,7 +35,7 @@ module YAMG
 
     def compile_screenshots(ss, size, setup)
       return unless YAMG.config['screenshot'].respond_to?(:[])
-      fail 'No url provided' unless (url = YAMG.config['screenshot']['url'])
+      raise 'No url provided' unless (url = YAMG.config['screenshot']['url'])
       Screenshot.new(ss, 'size' => size, 'url' => url).work(setup['path'])
       puts Rainbow("[o]SS #{ss}").black
     end
@@ -65,7 +65,7 @@ module YAMG
 
     def compile_docs(opts)
       out = opts['path']
-      %w( manifest.json browserconfig.xml ).each do |doc|
+      %w(manifest.json browserconfig.xml).each do |doc|
         next if File.exist?(out)
         puts Rainbow("{DOCS} #{out}/#{doc} created. Please review.").red
         src = File.expand_path("assets/#{doc}", File.dirname(__FILE__))

@@ -8,7 +8,7 @@ module YAMG
     # Uses PhantomJS
     def initialize(*ss)
       @name, opts =  ss
-      fail 'No screen size provided' unless opts && opts['size']
+      raise 'No screen size provided' unless opts && opts['size']
       uri = URI.parse(opts['url'])
       @url = "http://#{uri}"
       @size = opts['size']

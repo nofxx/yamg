@@ -17,9 +17,9 @@ module YAMG
     # ICO: 16/32/48
     #
     def initialize(src, size, bg = nil, rounded = false, radius = 9)
-      fail 'No source' if src.nil? || src.empty?
+      raise 'No source' if src.nil? || src.empty?
       @src = src
-      @size  = size
+      @size = size
       @rounded = rounded
       @icons = YAMG.load_images(src)
       YAMG.puts_and_exit("No sources in '#{src}'") if icons.empty?
@@ -28,7 +28,7 @@ module YAMG
       # @dpi = 90
       @bg = bg
     end
-    alias_method :rounded?, :rounded
+    alias rounded? rounded
 
     def find_closest_gte_icon
       proc = ->(x) { x.tr('^0-9', '').to_i }
@@ -51,13 +51,12 @@ module YAMG
     # Maybe this can be smaller, terminal equivalent:
     # convert
     # -size 512x512 xc:none
-    # -draw "roundrectangle 0,0,512,512,55,55" mask.png
-    # convert icon.png
+    # -draw "roundrectangle 0,0,512,512,55,55" mask.png convert icon.png
     # -matte mask.png
     # -compose DstIn
     # -composite picture_with_rounded_corners.png
     # https://gist.github.com/artemave/c20e7450af866f5e7735
-    def round(r = 14)
+    def round
       mask = MiniMagick::Image.open(img.path)
       mask.format 'png'
 
@@ -98,7 +97,7 @@ module YAMG
 
     # Just copy the svg, never resize
     def svg!
-      fail unless @icons.find { |i| File.extname(i) == 'svg' }
+      raise unless @icons.find { |i| File.extname(i) == 'svg' }
     end
 
     # ICO!
@@ -123,7 +122,6 @@ module YAMG
         YAMG.run_rsvg(@choosen, temp, args)
         @img = MiniMagick::Image.open(temp)
         @img.format File.extname(out) if out
-
       else
         @img = MiniMagick::Image.open(@choosen)
         @img.format File.extname(out) if out
