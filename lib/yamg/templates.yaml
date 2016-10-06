@@ -224,18 +224,19 @@ apple:
   splash:
     'apple/splash1024x768.png': [1024, 768]
   screenshots:
-    'apple/ipad-1024x768-land': [1024, 768]
+    'apple/5-5-inch-iphone6plus-2208x1242-land': [2208, 1242]
+    'apple/5-5-inch-iphone6plus-1242x2208-land': [1242, 2208]    
+    'apple/4-7-inch-iphone6-1334x750-land': [1334, 750, 2]
+    'apple/4-7-inch-iphone6-750x1334-port': [750, 1334, 2]
+    'apple/4-inch-iphone5-1136x640-land': [1136, 640, 2]
+    'apple/4-inch-iphone5-640x1136-port': [640, 1136, 2]
+    'apple/3-5-inch-iphone4-960x640-land': [960, 640]
+    'apple/3-5-inch-iphone4-640x960-port': [640, 960]     
+    'apple/12-9-inch-ipadretina-2048x1536-land': [2048, 1536, 2]
+    'apple/12-9-inch-ipadretina-2048x1536-port': [1536, 2048, 2]
     'apple/ipad-1024x768-port': [768, 1024]
-    'apple/ipadretina-2048x1536-land': [2048, 1536, 2]
-    'apple/ipadretina-2048x1536-port': [1536, 2048, 2]
-    'apple/iphone4-960x640-land': [960, 640]
-    'apple/iphone4-640x960-port': [640, 960]
-    'apple/iphone5-1136x640-land': [1136, 640, 2]
-    'apple/iphone5-640x1136-port': [640, 1136, 2]
-    'apple/iphone6p-1080x1920-port': [1080, 1920, 2]
-    'apple/iphone6p-1920x1080-land': [1920, 1080, 2]
-    'apple/iphone6-1334x750-land': [1334, 750, 2]
-    'apple/iphone6-750x1334-port': [750, 1334, 2]
+    'apple/ipad-1024x768-land': [1024, 768] 
+    
 
 
 google:
