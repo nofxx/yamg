@@ -26,10 +26,10 @@ android:
     'res/drawable-hdpi/icon.png': 72
     'res/drawable-xhdpi/icon.png': 96
     'res/drawable-xxhdpi/icon.png': 144
-    'res/mipmap-ldpi/icon.png': 48
-    'res/mipmap-mdpi/icon.png': 72
-    'res/mipmap-hdpi/icon.png': 96
-    'res/mipmap-xhdpi/icon.png': 144
+    'res/mipmap-ldpi/icon.png': 36
+    'res/mipmap-mdpi/icon.png': 48
+    'res/mipmap-hdpi/icon.png': 72
+    'res/mipmap-xhdpi/icon.png': 96
     'bin/res/drawable/icon.png': 96
     'bin/res/drawable-ldpi/icon.png': 36
     'bin/res/drawable-mdpi/icon.png': 48
