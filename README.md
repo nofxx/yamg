@@ -61,7 +61,7 @@ First time
 
     yamg init
 
-A `.yamg.yml` will be created on the folder.
+The config file `yamg.yml` will be created on the folder.
 From now on to recompile everything when needed:
 
     yamg
@@ -84,7 +84,7 @@ art
 
 ```
 
-From the `.yamg.yml` you may configure differents source paths.
+From the `yamg.yml` file you may configure differents source paths.
 Also configure every export location you need (check #Support)
 
 

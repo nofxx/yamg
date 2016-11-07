@@ -14,7 +14,7 @@ module YAMG
   autoload :Splash, 'yamg/splash'
   autoload :Screenshot, 'yamg/screenshot'
 
-  CONFIG_FILE = './.yamg.yml'.freeze
+  CONFIG_FILE = './yamg.yml'.freeze
   # Load template works
   TEMPLATES = YAML.load_file(
     File.join(File.dirname(__FILE__), 'yamg', 'templates.yaml')
