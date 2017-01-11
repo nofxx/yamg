@@ -99,7 +99,7 @@ ios:
     'res/ios/splash/Default-568h@2x~iphone.png': [640, 1136]
     'res/ios/splash/Default-667h.png': [750, 1344]
     'res/ios/splash/Default-736h.png': [1242, 2208]
-    'res/ios/splash/Dfault-Landscape-736h.png' : [2208, 1242]
+    'res/ios/splash/Default-Landscape-736h.png' : [2208, 1242]
 
 
 osx:
