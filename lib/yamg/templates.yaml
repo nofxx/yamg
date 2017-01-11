@@ -71,24 +71,24 @@ android:
 
 ios:
   icon:
-    'Resources/icons/icon.png': 57
-    'Resources/icons/icon@2x.png': 114
-    'Resources/icons/icon-40.png': 40
-    'Resources/icons/icon-40@2x.png': 80
-    'Resources/icons/icon-40@3x.png': 120
-    'Resources/icons/icon-50.png': 50
-    'Resources/icons/icon-50@2x.png': 100
-    'Resources/icons/icon-60.png': 60
-    'Resources/icons/icon-60@2x.png': 120
-    'Resources/icons/icon-60@3x.png': 180
-    'Resources/icons/icon-72.png': 72
-    'Resources/icons/icon-72@2x.png': 144
-    'Resources/icons/icon-76.png': 76
-    'Resources/icons/icon-76@2x.png': 152
-    'Resources/icons/icon-120.png': 120
-    'Resources/icons/icon-small.png': 29
-    'Resources/icons/icon-small@2x.png': 58
-    'Resources/icons/icon-small@3x.png': 87
+    'res/ios/icon.png': 57
+    'res/ios/icon@2x.png': 114
+    'res/ios/icon-40.png': 40
+    'res/ios/icon-40@2x.png': 80
+    'res/ios/icon-40@3x.png': 120
+    'res/ios/icon-50.png': 50
+    'res/ios/icon-50@2x.png': 100
+    'res/ios/icon-60.png': 60
+    'res/ios/icon-60@2x.png': 120
+    'res/ios/icon-60@3x.png': 180
+    'res/ios/icon-72.png': 72
+    'res/ios/icon-72@2x.png': 144
+    'res/ios/icon-76.png': 76
+    'res/ios/icon-76@2x.png': 152
+    'res/ios/icon-120.png': 120
+    'res/ios/icon-small.png': 29
+    'res/ios/icon-small@2x.png': 58
+    'res/ios/icon-small@3x.png': 87
   splash:
     'Resources/splash/Default~iphone.png': [320, 480]
     'Resources/splash/Default@2x~iphone.png': [640, 960]
