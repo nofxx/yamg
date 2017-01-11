@@ -90,16 +90,16 @@ ios:
     'res/ios/icon-small@2x.png': 58
     'res/ios/icon-small@3x.png': 87
   splash:
-    'Resources/splash/Default~iphone.png': [320, 480]
-    'Resources/splash/Default@2x~iphone.png': [640, 960]
-    'Resources/splash/Default-Landscape@2x~ipad.png': [2048, 1536]
-    'Resources/splash/Default-Landscape~ipad.png': [1024, 768]
-    'Resources/splash/Default-Portrait@2x~ipad.png': [1536, 2048]
-    'Resources/splash/Default-Portrait~ipad.png': [768, 1024]
-    'Resources/splash/Default-568h@2x~iphone.png': [640, 1136]
-    'Resources/splash/Default-667h.png': [750, 1344]
-    'Resources/splash/Default-736h.png': [1242, 2208]
-    'Resources/splash/Default-Landscape-736h.png' : [2208, 1242]
+    'res/splash/Default~iphone.png': [320, 480]
+    'res/splash/Default@2x~iphone.png': [640, 960]
+    'res/splash/Default-Landscape@2x~ipad.png': [2048, 1536]
+    'res/splash/Default-Landscape~ipad.png': [1024, 768]
+    'res/splash/Default-Portrait@2x~ipad.png': [1536, 2048]
+    'res/splash/Default-Portrait~ipad.png': [768, 1024]
+    'res/splash/Default-568h@2x~iphone.png': [640, 1136]
+    'res/splash/Default-667h.png': [750, 1344]
+    'res/splash/Default-736h.png': [1242, 2208]
+    'res/spsash/Default-Landscape-736h.png' : [2208, 1242]
 
 
 osx:
