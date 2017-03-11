@@ -20,28 +20,12 @@ raster:
 
 android:
   icon:
-    'res/drawable/icon.png': 96
-    'res/drawable-ldpi/icon.png': 36
-    'res/drawable-mdpi/icon.png': 48
-    'res/drawable-hdpi/icon.png': 72
-    'res/drawable-xhdpi/icon.png': 96
-    'res/drawable-xxhdpi/icon.png': 144
-    'res/mipmap-ldpi/icon.png': 36
-    'res/mipmap-mdpi/icon.png': 48
-    'res/mipmap-hdpi/icon.png': 72
-    'res/mipmap-xhdpi/icon.png': 96
-    'bin/res/drawable/icon.png': 96
-    'bin/res/drawable-ldpi/icon.png': 36
-    'bin/res/drawable-mdpi/icon.png': 48
-    'bin/res/drawable-hdpi/icon.png': 72
-    'bin/res/drawable-xhdpi/icon.png': 96
-    'bin/res/drawable-xxhdpi/icon.png': 144
-    'ant-build/res/drawable/icon.png': 96
-    'ant-build/res/drawable-ldpi/icon.png': 36
-    'ant-build/res/drawable-mdpi/icon.png': 48
-    'ant-build/res/drawable-hdpi/icon.png': 72
-    'ant-build/res/drawable-xhdpi/icon.png': 96
-    'ant-build/res/drawable-xxhdpi/icon.png': 144
+    'res/android/ldpi.png': 36
+    'res/android/mdpi.png': 48
+    'res/android/hdpi.png': 72
+    'res/android/xhdpi.png': 96
+    'res/android/xxhdpi.png': 144
+    'res/android/xxxhdpi.png': 192
   splash:
     'res/android/splash-port-ldpi.png': [200, 320]
     'res/android/splash-port-mdpi.png': [320, 480]
@@ -69,6 +53,8 @@ ios:
     'res/ios/icon-72@2x.png': 144
     'res/ios/icon-76.png': 76
     'res/ios/icon-76@2x.png': 152
+    'res/ios/icon-76@2x.png': 152
+    'res/ios/icon-83.5@2x.png': 167
     'res/ios/icon-120.png': 120
     'res/ios/icon-small.png': 29
     'res/ios/icon-small@2x.png': 58
