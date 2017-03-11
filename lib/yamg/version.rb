@@ -1,4 +1,4 @@
 # :nodoc:
 module YAMG
-  VERSION = '1.1.4'.freeze
+  VERSION = '2.0.0'.freeze
 end

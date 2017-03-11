@@ -197,7 +197,7 @@ compile:
 * OSX Project
 * Android Project
 * Windows Project
-* Cordova (platforms/*)
+* Cordova (res/*)
 * Phonegap (www/res)
 * App Store
 * Play Store
@@ -271,6 +271,12 @@ http://wkhtmltopdf.org/
 ### Media
 
 Media is a logo, icon + name.
+
+## Cordova
+
+Don't forget to add to your `config.xml`:
+
+https://cordova.apache.org/docs/en/latest/config_ref/images.html
 
 
 ### Phonegap or Cordova
