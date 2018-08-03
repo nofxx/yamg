@@ -72,6 +72,8 @@ ios:
     'res/ios/Default-667h.png': [750, 1334]
     'res/ios/Default-736h.png': [1242, 2208]
     'res/ios/Default-Landscape-736h.png': [2208, 1242]
+    'res/ios/Default-2436h.png': [1125, 2436]
+    'res/ios/Default-Landscape-2436h.png': [2436, 1125]
 
 osx:
   icons:
