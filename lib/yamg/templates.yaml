@@ -69,10 +69,9 @@ ios:
     'res/ios/Default-Portrait@2x~ipad.png': [1536, 2048]
     'res/ios/Default-Portrait~ipad.png': [768, 1024]
     'res/ios/Default-568h@2x~iphone.png': [640, 1136]
-    'res/ios/Default-667h.png': [750, 1344]
+    'res/ios/Default-667h.png': [750, 1334]
     'res/ios/Default-736h.png': [1242, 2208]
-    'res/ios/Default-Landscape-736h.png' : [2208, 1242]
-
+    'res/ios/Default-Landscape-736h.png': [2208, 1242]
 
 osx:
   icons:
@@ -146,7 +145,7 @@ phonegap:
     'screen/ios/screen-iphone-portrait-568h-2x.png': [640, 1136]
     'screen/ios/screen-iphone-portrait.png': [320, 480]
     'screen/ios/screen-iDefault~iphone.png': [320, 480]
-    'screen/ios/screen-iDefault-667h.png': [750, 1344]
+    'screen/ios/screen-iDefault-667h.png': [750, 1334]
     'screen/ios/screen-iDefault-736h.png': [1242, 2208]
     'screen/ios/screen-iDefault-Landscape-736h.png': [2208, 1242]
     'screen/windows-phone/screen-portrait.jpg': [720, 1280]
