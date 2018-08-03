@@ -41,6 +41,8 @@ ios:
   icon:
     'res/ios/icon.png': 57
     'res/ios/icon@2x.png': 114
+    'res/ios/icon-20.png': 20
+    'res/ios/icon-20@2x.png': 40
     'res/ios/icon-40.png': 40
     'res/ios/icon-40@2x.png': 80
     'res/ios/icon-40@3x.png': 120
