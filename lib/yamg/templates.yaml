@@ -4,6 +4,7 @@ raster:
     'icon32.png': 32
     'icon64.png': 64
     'icon128.png': 128
+    'icon192.png': 192
     'icon256.png': 256
     'icon512.png': 512
     'icon1024.png': 1024
@@ -30,11 +31,11 @@ android:
     'res/android/splash-port-ldpi.png': [200, 320]
     'res/android/splash-port-mdpi.png': [320, 480]
     'res/android/splash-port-hdpi.png': [480, 800]
-    'res/android/splash-port-xhdp.png': [720, 1280]
+    'res/android/splash-port-xhdpi.png': [720, 1280]
     'res/android/splash-land-ldpi.png': [320, 200]
     'res/android/splash-land-mdpi.png': [480, 320]
     'res/android/splash-land-hdpi.png': [800, 480]
-    'res/android/splash-land-xhdp.png': [1280, 720]
+    'res/android/splash-land-xhdpi.png': [1280, 720]
 
 
 ios:
